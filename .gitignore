@@ -1,0 +1,11 @@
+# build outputs & logs
+build/
+*.o
+*.elf
+*.bin
+*.img
+*.log
+*.err
+
+# windows reserved junk
+NUL

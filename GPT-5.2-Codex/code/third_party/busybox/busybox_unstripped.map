@@ -1,0 +1,1263 @@
+Archive member included to satisfy reference by file (symbol)
+
+libbb/lib.a(appletlib.o)      ../../user/crt/start.o (main)
+libbb/lib.a(compare_string_array.o)
+                              libbb/lib.a(appletlib.o) (is_prefixed_with)
+libbb/lib.a(default_error_retval.o)
+                              libbb/lib.a(appletlib.o) (xfunc_error_retval)
+libbb/lib.a(get_last_path_component.o)
+                              libbb/lib.a(appletlib.o) (bb_basename)
+libbb/lib.a(last_char_is.o)   libbb/lib.a(get_last_path_component.o) (last_char_is)
+libbb/lib.a(xfunc_die.o)      libbb/lib.a(appletlib.o) (xfunc_die)
+libbb/lib.a(xfuncs.o)         libbb/lib.a(appletlib.o) (full_write2_str)
+libbb/lib.a(full_write.o)     libbb/lib.a(xfuncs.o) (full_write)
+libbb/lib.a(messages.o)       libbb/lib.a(xfuncs.o) (bb_hexdigits_upcase)
+libbb/lib.a(safe_write.o)     libbb/lib.a(full_write.o) (safe_write)
+shell/lib.a(ash.o)            libbb/lib.a(appletlib.o) (ash_main)
+shell/lib.a(ash_ptr_hack.o)   shell/lib.a(ash.o) (ash_ptr_to_globals_var)
+shell/lib.a(shell_common.o)   shell/lib.a(ash.o) (shell_builtin_read)
+editors/lib.a(vi.o)           libbb/lib.a(appletlib.o) (vi_main)
+libbb/lib.a(bb_strtonum.o)    shell/lib.a(shell_common.o) (bb_strtoull)
+libbb/lib.a(concat_path_file.o)
+                              editors/lib.a(vi.o) (concat_path_file)
+libbb/lib.a(endofname.o)      shell/lib.a(ash.o) (endofname)
+libbb/lib.a(getopt32.o)       editors/lib.a(vi.o) (getopt32)
+libbb/lib.a(llist.o)          libbb/lib.a(getopt32.o) (llist_add_to_end)
+libbb/lib.a(parse_mode.o)     shell/lib.a(ash.o) (bb_parse_mode)
+libbb/lib.a(perror_msg.o)     shell/lib.a(shell_common.o) (bb_simple_perror_msg)
+libbb/lib.a(ptr_to_globals.o)
+                              editors/lib.a(vi.o) (ptr_to_globals)
+libbb/lib.a(read.o)           editors/lib.a(vi.o) (full_read)
+libbb/lib.a(read_key.o)       editors/lib.a(vi.o) (safe_read_key)
+libbb/lib.a(read_printf.o)    shell/lib.a(ash.o) (nonblock_immune_read)
+libbb/lib.a(safe_poll.o)      editors/lib.a(vi.o) (safe_poll)
+libbb/lib.a(safe_strncpy.o)   shell/lib.a(ash.o) (safe_strncpy)
+libbb/lib.a(signals.o)        shell/lib.a(ash.o) (sigaction_set)
+libbb/lib.a(sysconf.o)        shell/lib.a(ash.o) (bb_clk_tck)
+libbb/lib.a(time.o)           shell/lib.a(shell_common.o) (monotonic_ms)
+libbb/lib.a(u_signal_names.o)
+                              shell/lib.a(ash.o) (get_signum)
+libbb/lib.a(verror_msg.o)     libbb/lib.a(perror_msg.o) (bb_verror_msg)
+libbb/lib.a(xatonum.o)        libbb/lib.a(getopt32.o) (xatoi_positive)
+libbb/lib.a(xfuncs_printf.o)  shell/lib.a(ash.o) (xmalloc)
+libbb/lib.a(copyfd.o)         libbb/lib.a(xfuncs_printf.o) (bb_copyfd_eof)
+../../user/lib/libc.a(syscall.o)
+                              libbb/lib.a(xfuncs.o) (write)
+../../user/lib/libc.a(string.o)
+                              libbb/lib.a(compare_string_array.o) (strlen)
+../../user/lib/libc.a(ctype.o)
+                              ../../user/lib/libc.a(string.o) (tolower)
+../../user/lib/libc.a(printf.o)
+                              shell/lib.a(ash.o) (vprintf)
+../../user/lib/libc.a(stdlib.o)
+                              libbb/lib.a(xfuncs.o) (atoi)
+../../user/lib/libc.a(malloc.o)
+                              shell/lib.a(ash.o) (free)
+../../user/lib/libc.a(errno.o)
+                              libbb/lib.a(xfuncs.o) (errno)
+../../user/lib/libc.a(termios.o)
+                              libbb/lib.a(xfuncs.o) (tcgetattr)
+../../user/lib/libc.a(isatty.o)
+                              libbb/lib.a(xfuncs.o) (isatty)
+../../user/lib/libc.a(stdio_file.o)
+                              libbb/lib.a(xfuncs_printf.o) (fopen)
+../../user/lib/libc.a(stat.o)
+                              shell/lib.a(ash.o) (stat)
+../../user/lib/libc.a(poll.o)
+                              shell/lib.a(shell_common.o) (poll)
+../../user/lib/libc.a(signal.o)
+                              shell/lib.a(ash.o) (signal)
+../../user/lib/libc.a(time.o)
+                              libbb/lib.a(xfuncs_printf.o) (gettimeofday)
+../../user/lib/libc.a(resource.o)
+                              shell/lib.a(shell_common.o) (getrlimit)
+../../user/lib/libc.a(mman.o)
+                              libbb/lib.a(xfuncs_printf.o) (mmap)
+../../user/lib/libc.a(pwd.o)  shell/lib.a(ash.o) (getpwnam)
+../../user/lib/libc.a(unistd_extra.o)
+                              shell/lib.a(ash.o) (getpid)
+../../user/lib/libc.a(strerror.o)
+                              shell/lib.a(ash.o) (strerror)
+../../user/lib/libc.a(dirent.o)
+                              libbb/lib.a(xfuncs_printf.o) (opendir)
+../../user/lib/libc.a(fnmatch.o)
+                              shell/lib.a(ash.o) (fnmatch)
+../../user/lib/libc.a(getopt.o)
+                              shell/lib.a(shell_common.o) (getopt)
+../../user/lib/libc.a(socket.o)
+                              libbb/lib.a(xfuncs_printf.o) (socket)
+../../user/lib/libc.a(fcntl.o)
+                              libbb/lib.a(xfuncs.o) (fcntl)
+../../user/lib/libc.a(times.o)
+                              shell/lib.a(ash.o) (times)
+../../user/lib/libc.a(glob.o)
+                              shell/lib.a(ash.o) (glob)
+../../user/lib/libc.a(setjmp.o)
+                              shell/lib.a(ash.o) (setjmp)
+
+Allocating common symbols
+Common symbol       size              file
+
+applet_name         0x8               libbb/lib.a(appletlib.o)
+ash_ptr_to_globals_memstack
+                    0x8               shell/lib.a(ash_ptr_hack.o)
+environ             0x8               ../../user/lib/libc.a(stdlib.o)
+ash_ptr_to_globals_misc
+                    0x8               shell/lib.a(ash_ptr_hack.o)
+ash_ptr_to_globals_var
+                    0x8               shell/lib.a(ash_ptr_hack.o)
+ptr_to_globals      0x8               libbb/lib.a(ptr_to_globals.o)
+die_func            0x8               libbb/lib.a(xfunc_die.o)
+errno               0x4               ../../user/lib/libc.a(errno.o)
+bb_got_signal       0x4               libbb/lib.a(signals.o)
+option_mask32       0x4               libbb/lib.a(getopt32.o)
+
+Discarded input sections
+
+ .data          0x0000000000000000        0x0 ../../user/crt/start.o
+ .bss           0x0000000000000000        0x0 ../../user/crt/start.o
+ .text          0x0000000000000000        0x0 applets/built-in.o
+ .data          0x0000000000000000        0x0 applets/built-in.o
+ .bss           0x0000000000000000        0x0 applets/built-in.o
+ .comment       0x0000000000000000        0xf applets/built-in.o
+ .riscv.attributes
+                0x0000000000000000       0x2b applets/built-in.o
+ .data          0x0000000000000000        0x0 libbb/lib.a(appletlib.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(appletlib.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(appletlib.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(compare_string_array.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(compare_string_array.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(compare_string_array.o)
+ .text          0x0000000000000000        0x0 libbb/lib.a(default_error_retval.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(default_error_retval.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(default_error_retval.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(default_error_retval.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(get_last_path_component.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(get_last_path_component.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(get_last_path_component.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(last_char_is.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(last_char_is.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(last_char_is.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(xfunc_die.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(xfunc_die.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(xfunc_die.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(xfuncs.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(xfuncs.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(full_write.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(full_write.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(full_write.o)
+ .text          0x0000000000000000        0x0 libbb/lib.a(messages.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(messages.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(messages.o)
+ .srodata       0x0000000000000000        0x4 libbb/lib.a(messages.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(messages.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(safe_write.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(safe_write.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(safe_write.o)
+ .data          0x0000000000000000        0x0 shell/lib.a(ash.o)
+ .comment       0x0000000000000000        0xf shell/lib.a(ash.o)
+ .text          0x0000000000000000        0x0 shell/lib.a(ash_ptr_hack.o)
+ .data          0x0000000000000000        0x0 shell/lib.a(ash_ptr_hack.o)
+ .bss           0x0000000000000000        0x0 shell/lib.a(ash_ptr_hack.o)
+ .comment       0x0000000000000000        0xf shell/lib.a(ash_ptr_hack.o)
+ .data          0x0000000000000000        0x0 shell/lib.a(shell_common.o)
+ .bss           0x0000000000000000        0x0 shell/lib.a(shell_common.o)
+ .comment       0x0000000000000000        0xf shell/lib.a(shell_common.o)
+ .data          0x0000000000000000        0x0 editors/lib.a(vi.o)
+ .bss           0x0000000000000000        0x0 editors/lib.a(vi.o)
+ .comment       0x0000000000000000        0xf editors/lib.a(vi.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(bb_strtonum.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(bb_strtonum.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(bb_strtonum.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(concat_path_file.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(concat_path_file.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(concat_path_file.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(endofname.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(endofname.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(endofname.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(getopt32.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(getopt32.o)
+ .rodata        0x0000000000000000       0x10 libbb/lib.a(getopt32.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(getopt32.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(llist.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(llist.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(llist.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(parse_mode.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(parse_mode.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(parse_mode.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(perror_msg.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(perror_msg.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(perror_msg.o)
+ .text          0x0000000000000000        0x0 libbb/lib.a(ptr_to_globals.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(ptr_to_globals.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(ptr_to_globals.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(ptr_to_globals.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(read.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(read.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(read.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(read_key.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(read_key.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(read_key.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(read_printf.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(read_printf.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(read_printf.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(safe_poll.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(safe_poll.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(safe_poll.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(safe_strncpy.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(safe_strncpy.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(safe_strncpy.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(signals.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(signals.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(signals.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(sysconf.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(sysconf.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(sysconf.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(time.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(time.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(time.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(u_signal_names.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(u_signal_names.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(u_signal_names.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(verror_msg.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(verror_msg.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(verror_msg.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(xatonum.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(xatonum.o)
+ .rodata        0x0000000000000000      0x120 libbb/lib.a(xatonum.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(xatonum.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(xfuncs_printf.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(xfuncs_printf.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(xfuncs_printf.o)
+ .data          0x0000000000000000        0x0 libbb/lib.a(copyfd.o)
+ .bss           0x0000000000000000        0x0 libbb/lib.a(copyfd.o)
+ .comment       0x0000000000000000        0xf libbb/lib.a(copyfd.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(syscall.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(syscall.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(syscall.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(string.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(string.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(string.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(ctype.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(ctype.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(ctype.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(printf.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(printf.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(printf.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(stdlib.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(stdlib.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(stdlib.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(malloc.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(malloc.o)
+ .text          0x0000000000000000        0x0 ../../user/lib/libc.a(errno.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(errno.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(errno.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(errno.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(termios.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(termios.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(termios.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(isatty.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(isatty.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(isatty.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(stdio_file.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(stat.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(stat.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(stat.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(poll.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(poll.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(poll.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(signal.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(signal.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(time.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(resource.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(resource.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(resource.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(mman.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(mman.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(mman.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(pwd.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(pwd.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(unistd_extra.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(unistd_extra.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(strerror.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(strerror.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(strerror.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(dirent.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(dirent.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(dirent.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(fnmatch.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(fnmatch.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(fnmatch.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(getopt.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(getopt.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(getopt.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(socket.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(socket.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(socket.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(fcntl.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(fcntl.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(fcntl.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(times.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(times.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(times.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(glob.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(glob.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(glob.o)
+ .data          0x0000000000000000        0x0 ../../user/lib/libc.a(setjmp.o)
+ .bss           0x0000000000000000        0x0 ../../user/lib/libc.a(setjmp.o)
+ .comment       0x0000000000000000        0xf ../../user/lib/libc.a(setjmp.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000000400000                . = 0x400000
+
+.text           0x0000000000400000    0x13214
+ *(SORT_BY_ALIGNMENT(.text) SORT_BY_ALIGNMENT(.text.*))
+ .text          0x0000000000400000        0xe ../../user/crt/start.o
+                0x0000000000400000                _start
+ .text          0x000000000040000e       0xf6 libbb/lib.a(appletlib.o)
+                0x000000000040000e                string_array_len
+                0x0000000000400028                bb_show_usage
+                0x0000000000400030                find_applet_by_name
+                0x000000000040007e                lbb_prepare
+                0x0000000000400088                show_usage_if_dash_dash_help
+                0x00000000004000b2                run_applet_no_and_exit
+ .text.startup  0x0000000000400104       0x7c libbb/lib.a(appletlib.o)
+                0x0000000000400104                main
+ .text          0x0000000000400180      0x182 libbb/lib.a(compare_string_array.o)
+                0x0000000000400180                is_prefixed_with
+                0x00000000004001a0                is_suffixed_with
+                0x00000000004001ee                index_in_str_array
+                0x0000000000400236                index_in_strings
+                0x0000000000400274                index_in_substrings
+                0x00000000004002ee                nth_string
+ .text          0x0000000000400302       0x9c libbb/lib.a(get_last_path_component.o)
+                0x0000000000400302                bb_basename
+                0x0000000000400328                bb_get_last_path_component_nostrip
+                0x000000000040035a                bb_get_last_path_component_strip
+ .text          0x000000000040039e       0x2e libbb/lib.a(last_char_is.o)
+                0x000000000040039e                last_char_is
+ .text          0x00000000004003cc       0x1c libbb/lib.a(xfunc_die.o)
+                0x00000000004003cc                xfunc_die
+ .text          0x00000000004003e8      0x5fc libbb/lib.a(xfuncs.o)
+                0x000000000040043a                ndelay_on
+                0x0000000000400472                ndelay_off
+                0x00000000004004ae                close_on_exec_on
+                0x00000000004004b6                strncpy_IFNAMSIZ
+                0x00000000004004bc                utoa_to_buf
+                0x00000000004004c4                itoa_to_buf
+                0x00000000004004e8                utoa
+                0x000000000040050c                itoa
+                0x000000000040054e                bin2hex
+                0x00000000004005a8                hex2bin
+                0x000000000040067c                bb_putchar_stderr
+                0x000000000040069a                full_write1_str
+                0x00000000004006b4                full_write2_str
+                0x00000000004006ce                get_terminal_width_height
+                0x00000000004007c2                get_terminal_width
+                0x00000000004007d6                is_TERM_dumb
+                0x0000000000400802                tcsetattr_stdin_TCSANOW
+                0x000000000040080c                get_termios_and_make_raw
+                0x000000000040089e                set_termios_to_raw
+                0x00000000004008c4                safe_waitpid
+                0x0000000000400910                wait_any_nohang
+                0x000000000040094c                wait4pid
+                0x00000000004009d0                exit_SUCCESS
+                0x00000000004009da                _exit_SUCCESS
+ .text          0x00000000004009e4       0x48 libbb/lib.a(full_write.o)
+                0x00000000004009e4                full_write
+ .text          0x0000000000400a2c       0x4e libbb/lib.a(safe_write.o)
+                0x0000000000400a2c                safe_write
+ .text          0x0000000000400a7a     0x94a2 shell/lib.a(ash.o)
+                0x0000000000409b5e                ash_main
+ .text          0x0000000000409f1c      0x764 shell/lib.a(shell_common.o)
+                0x0000000000409f48                shell_builtin_read
+                0x000000000040a3a8                shell_builtin_ulimit
+ .text          0x000000000040a680     0x35f0 editors/lib.a(vi.o)
+                0x000000000040d9e0                vi_main
+ .text          0x000000000040dc70      0x29a libbb/lib.a(bb_strtonum.o)
+                0x000000000040dc70                bb_strtoull
+                0x000000000040dd08                bb_strtoll
+                0x000000000040ddb4                bb_strtou
+                0x000000000040de56                bb_strtoi
+ .text          0x000000000040df0a       0x64 libbb/lib.a(concat_path_file.o)
+                0x000000000040df0a                concat_path_file
+ .text          0x000000000040df6e       0x5c libbb/lib.a(endofname.o)
+                0x000000000040df6e                endofname
+ .text          0x000000000040dfca      0x45e libbb/lib.a(getopt32.o)
+                0x000000000040e404                getopt32
+ .text          0x000000000040e428      0x108 libbb/lib.a(llist.o)
+                0x000000000040e428                llist_add_to
+                0x000000000040e44c                llist_add_to_end
+                0x000000000040e476                llist_pop
+                0x000000000040e498                llist_unlink
+                0x000000000040e4b2                llist_free
+                0x000000000040e4e4                llist_rev
+                0x000000000040e4f6                llist_find_str
+ .text          0x000000000040e530      0x1ec libbb/lib.a(parse_mode.o)
+                0x000000000040e530                bb_parse_mode
+ .text          0x000000000040e71c       0xa0 libbb/lib.a(perror_msg.o)
+                0x000000000040e71c                bb_perror_msg
+                0x000000000040e760                bb_perror_msg_and_die
+                0x000000000040e79e                bb_simple_perror_msg
+                0x000000000040e7aa                bb_simple_perror_msg_and_die
+ .text          0x000000000040e7bc      0x114 libbb/lib.a(read.o)
+                0x000000000040e7bc                safe_read
+                0x000000000040e80a                full_read
+                0x000000000040e874                read_close
+                0x000000000040e896                open_read_close
+ .text          0x000000000040e8d0      0x25e libbb/lib.a(read_key.o)
+                0x000000000040e8d0                read_key
+                0x000000000040eab0                safe_read_key
+                0x000000000040eaf0                read_key_ungets
+ .text          0x000000000040eb2e      0x29c libbb/lib.a(read_printf.o)
+                0x000000000040eb2e                nonblock_immune_read
+                0x000000000040eb8e                xmalloc_reads
+                0x000000000040ec4e                xmalloc_read_with_initial_buf
+                0x000000000040ed16                xmalloc_read
+                0x000000000040ed1c                xmalloc_open_read_close
+                0x000000000040ed54                xread
+                0x000000000040ed7c                xread_char
+                0x000000000040eda6                xmalloc_xopen_read_close
+ .text          0x000000000040edca       0x60 libbb/lib.a(safe_poll.o)
+                0x000000000040edca                safe_poll
+ .text          0x000000000040ee2a       0x30 libbb/lib.a(safe_strncpy.o)
+                0x000000000040ee2a                safe_strncpy
+                0x000000000040ee3c                overlapping_strcpy
+ .text          0x000000000040ee5a      0x1ce libbb/lib.a(signals.o)
+                0x000000000040ee5a                record_signo
+                0x000000000040ee64                sigaction_set
+                0x000000000040ee6a                sigprocmask_allsigs
+                0x000000000040ee8a                sigprocmask2
+                0x000000000040ee90                bb_signals
+                0x000000000040eee2                bb_signals_norestart
+                0x000000000040ef3e                sig_block
+                0x000000000040ef66                sig_unblock
+                0x000000000040ef8e                wait_for_any_sig
+                0x000000000040efa4                kill_myself_with_sig
+                0x000000000040efc6                signal_SA_RESTART_empty_mask
+                0x000000000040effa                signal_no_SA_RESTART_empty_mask
+ .text          0x000000000040f028       0x12 libbb/lib.a(sysconf.o)
+                0x000000000040f028                bb_clk_tck
+ .text          0x000000000040f03a      0x520 libbb/lib.a(time.o)
+                0x000000000040f03a                parse_datestr
+                0x000000000040f430                validate_tm_time
+                0x000000000040f45a                strftime_HHMMSS
+                0x000000000040f49a                strftime_YYYYMMDDHHMMSS
+                0x000000000040f4da                monotonic_ns
+                0x000000000040f504                monotonic_us
+                0x000000000040f526                monotonic_ms
+                0x000000000040f548                monotonic_sec
+ .text          0x000000000040f55a       0xf0 libbb/lib.a(u_signal_names.o)
+                0x000000000040f55a                get_signum
+                0x000000000040f5d4                get_signame
+                0x000000000040f5fa                print_signames
+ .text          0x000000000040f64a      0x222 libbb/lib.a(verror_msg.o)
+                0x000000000040f64a                bb_verror_msg
+                0x000000000040f804                bb_error_msg_and_die
+                0x000000000040f828                bb_error_msg
+                0x000000000040f84e                bb_simple_error_msg
+                0x000000000040f85a                bb_simple_error_msg_and_die
+ .text          0x000000000040f86c      0x424 libbb/lib.a(xatonum.o)
+                0x000000000040f86c                xstrtoull_range_sfx
+                0x000000000040f940                xstrtoull_range
+                0x000000000040f944                xstrtoull_sfx
+                0x000000000040f94c                xstrtoull
+                0x000000000040f954                xatoull_range_sfx
+                0x000000000040f95e                xatoull_range
+                0x000000000040f968                xatoull_sfx
+                0x000000000040f972                xatoull
+                0x000000000040f97c                xstrtoll_range_sfx
+                0x000000000040fa06                xstrtoll_range
+                0x000000000040fa0a                xstrtoll
+                0x000000000040fa16                xatoll_range_sfx
+                0x000000000040fa20                xatoll_range
+                0x000000000040fa2a                xatoll_sfx
+                0x000000000040fa38                xatoll
+                0x000000000040fa46                xstrtou_range_sfx
+                0x000000000040fb48                xstrtou_range
+                0x000000000040fb4c                xstrtou_sfx
+                0x000000000040fb54                xstrtou
+                0x000000000040fb5c                xatou_range_sfx
+                0x000000000040fb66                xatou_range
+                0x000000000040fb70                xatou_sfx
+                0x000000000040fb7a                xatou
+                0x000000000040fb84                xstrtoi_range_sfx
+                0x000000000040fc18                xstrtoi_range
+                0x000000000040fc1c                xstrtoi
+                0x000000000040fc2c                xatoi_range_sfx
+                0x000000000040fc36                xatoi_range
+                0x000000000040fc40                xatoi_sfx
+                0x000000000040fc52                xatoi
+                0x000000000040fc64                xatoi_positive
+                0x000000000040fc74                xatou16
+ .text          0x000000000040fc90      0x9e2 libbb/lib.a(xfuncs_printf.o)
+                0x000000000040fc90                bb_die_memory_exhausted
+                0x000000000040fca0                malloc_or_warn
+                0x000000000040fcce                xmalloc
+                0x000000000040fcea                xrealloc
+                0x000000000040fd06                xzalloc
+                0x000000000040fd2a                xstrdup
+                0x000000000040fd44                xstrndup
+                0x000000000040fd58                xmemdup
+                0x000000000040fd7a                mmap_read
+                0x000000000040fd88                mmap_anon
+                0x000000000040fd9a                xmmap_anon
+                0x000000000040fdc0                xfopen
+                0x000000000040fde4                xopen3
+                0x000000000040fe0a                xopen
+                0x000000000040fe10                open3_or_warn
+                0x000000000040fe4a                open_or_warn
+                0x000000000040fe50                xopen_nonblocking
+                0x000000000040fe5c                xunlink
+                0x000000000040fe80                xrename
+                0x000000000040feac                rename_or_warn
+                0x000000000040feee                xpipe
+                0x000000000040ff0a                xdup2
+                0x000000000040ff2e                xmove_fd
+                0x000000000040ff4c                xwrite
+                0x000000000040ff82                xwrite_str
+                0x000000000040ffce                xclose
+                0x000000000040ffea                xlseek
+                0x000000000041001a                xmkstemp
+                0x0000000000410040                die_if_ferror
+                0x0000000000410064                die_if_ferror_stdout
+                0x0000000000410076                fflush_all
+                0x000000000041007c                bb_putchar
+                0x0000000000410080                fputs_stdout
+                0x000000000041008c                xprint_and_close_file
+                0x00000000004100bc                xasprintf
+                0x00000000004100ee                xsetenv
+                0x0000000000410104                bb_unsetenv
+                0x0000000000410168                bb_unsetenv_and_free
+                0x0000000000410180                xsetgid
+                0x000000000041019c                xsetuid
+                0x00000000004101b8                xsetegid
+                0x00000000004101d4                xseteuid
+                0x00000000004101f0                xopen_as_uid_gid
+                0x000000000041024e                chdir_or_warn
+                0x0000000000410286                xchdir
+                0x000000000041029a                xfchdir
+                0x00000000004102b6                xchroot
+                0x00000000004102ec                warn_opendir
+                0x0000000000410324                xopendir
+                0x0000000000410348                xsocket
+                0x0000000000410366                xbind
+                0x0000000000410382                xlisten
+                0x000000000041039e                xsendto
+                0x00000000004103c2                xstat
+                0x00000000004103e6                xfstat
+                0x0000000000410402                ioctl_or_perror_and_die
+                0x0000000000410448                ioctl_or_perror
+                0x00000000004104a2                bb_ioctl_or_warn
+                0x00000000004104e0                bb_xioctl
+                0x000000000041050a                xmalloc_ttyname
+                0x0000000000410534                generate_uuid
+                0x00000000004105bc                xfork
+                0x00000000004105da                wait_for_exitstatus
+                0x00000000004105fe                xvfork_parent_waits_and_exits
+                0x000000000041064e                xsettimeofday
+                0x000000000041066c                xgettimeofday
+ .text          0x0000000000410672      0x110 libbb/lib.a(copyfd.o)
+                0x000000000041073c                bb_copyfd_size
+                0x0000000000410744                bb_copyfd_exact_size
+                0x000000000041077e                bb_copyfd_eof
+ .text          0x0000000000410782      0x3d2 ../../user/lib/libc.a(syscall.o)
+                0x0000000000410782                write
+                0x00000000004107a6                read
+                0x00000000004107ca                dup
+                0x00000000004107f2                dup2
+                0x0000000000410818                ioctl
+                0x000000000041083c                close
+                0x0000000000410866                openat
+                0x000000000041089a                open
+                0x00000000004108dc                lseek
+                0x0000000000410900                getdents64
+                0x0000000000410926                mkdirat
+                0x000000000041094e                unlinkat
+                0x0000000000410976                fstat
+                0x000000000041099e                fstatat
+                0x00000000004109c4                chdir
+                0x00000000004109ee                getcwd
+                0x0000000000410a18                fork
+                0x0000000000410a44                execve
+                0x0000000000410a6c                waitpid
+                0x0000000000410a94                wait
+                0x0000000000410ac0                _exit
+                0x0000000000410ad4                exit
+                0x0000000000410adc                brk
+                0x0000000000410afe                sbrk
+ .text          0x0000000000410b54      0x72a ../../user/lib/libc.a(string.o)
+                0x0000000000410b68                strlen
+                0x0000000000410b80                strnlen
+                0x0000000000410ba0                strcmp
+                0x0000000000410bc0                strncmp
+                0x0000000000410be6                strcpy
+                0x0000000000410bf8                strncpy
+                0x0000000000410c2c                stpcpy
+                0x0000000000410c46                stpncpy
+                0x0000000000410c90                strcat
+                0x0000000000410cc2                strncat
+                0x0000000000410d08                strchr
+                0x0000000000410d2a                strchrnul
+                0x0000000000410d42                strrchr
+                0x0000000000410d6c                index
+                0x0000000000410d8e                rindex
+                0x0000000000410db8                strstr
+                0x0000000000410df0                strspn
+                0x0000000000410e32                strcspn
+                0x0000000000410e74                strpbrk
+                0x0000000000410eb8                strtok_r
+                0x0000000000410f44                strtok
+                0x0000000000410f4e                strdup
+                0x0000000000410fb2                strndup
+                0x0000000000411038                memcmp
+                0x000000000041105c                memcpy
+                0x0000000000411074                mempcpy
+                0x0000000000411090                memmove
+                0x00000000004110c6                memset
+                0x00000000004110de                memchr
+                0x0000000000411100                memrchr
+                0x0000000000411122                strcasecmp
+                0x0000000000411182                strncasecmp
+                0x000000000041120e                strcoll
+                0x000000000041122e                strxfrm
+                0x0000000000411274                strsignal
+ .text          0x000000000041127e      0x128 ../../user/lib/libc.a(ctype.o)
+                0x000000000041127e                isspace
+                0x0000000000411292                isdigit
+                0x000000000041129c                isalpha
+                0x00000000004112aa                isalnum
+                0x00000000004112c6                isxdigit
+                0x00000000004112e2                iscntrl
+                0x00000000004112f6                islower
+                0x0000000000411300                isupper
+                0x000000000041130a                isprint
+                0x0000000000411312                isgraph
+                0x0000000000411334                ispunct
+                0x0000000000411378                isascii
+                0x000000000041137e                toascii
+                0x0000000000411384                tolower
+                0x0000000000411396                toupper
+ .text          0x00000000004113a6      0x47a ../../user/lib/libc.a(printf.o)
+                0x000000000041165c                vprintf
+                0x000000000041167c                dprintf
+                0x00000000004116ae                fprintf
+                0x00000000004116e2                vfprintf
+                0x0000000000411706                vsnprintf
+                0x0000000000411742                vsprintf
+                0x000000000041174a                sprintf
+                0x0000000000411770                snprintf
+                0x0000000000411790                printf
+                0x00000000004117c4                puts
+                0x00000000004117fe                putchar
+ .text          0x0000000000411820      0x59a ../../user/lib/libc.a(stdlib.o)
+                0x0000000000411914                atoi
+                0x0000000000411980                calloc
+                0x00000000004119aa                strtol
+                0x0000000000411a86                atol
+                0x0000000000411a8c                strtoul
+                0x0000000000411b56                strtoll
+                0x0000000000411b58                strtoull
+                0x0000000000411b5a                qsort
+                0x0000000000411b62                bsearch
+                0x0000000000411bd0                getenv
+                0x0000000000411bd4                putenv
+                0x0000000000411bd8                setenv
+                0x0000000000411bdc                unsetenv
+                0x0000000000411be0                clearenv
+                0x0000000000411be4                srand
+                0x0000000000411bf8                rand
+                0x0000000000411c20                mkstemp
+                0x0000000000411d22                realpath
+                0x0000000000411d90                system
+                0x0000000000411da0                abs
+                0x0000000000411daa                labs
+                0x0000000000411db4                abort
+ .text          0x0000000000411dba      0x1d6 ../../user/lib/libc.a(malloc.o)
+                0x0000000000411dba                free
+                0x0000000000411e4c                malloc
+                0x0000000000411f1a                realloc
+                0x0000000000411f8c                mallopt
+ .text          0x0000000000411f90       0x22 ../../user/lib/libc.a(termios.o)
+                0x0000000000411f90                tcgetattr
+                0x0000000000411f9c                tcsetattr
+                0x0000000000411fa6                tcflush
+ .text          0x0000000000411fb2       0x14 ../../user/lib/libc.a(isatty.o)
+                0x0000000000411fb2                isatty
+ .text          0x0000000000411fc6      0x7ac ../../user/lib/libc.a(stdio_file.o)
+                0x00000000004120a2                fdopen
+                0x00000000004120ea                fopen
+                0x000000000041216e                freopen
+                0x00000000004121d8                fclose
+                0x0000000000412230                fread
+                0x000000000041228a                fwrite
+                0x00000000004122dc                fgetc
+                0x00000000004122fe                getc_unlocked
+                0x0000000000412320                getc
+                0x0000000000412322                getchar
+                0x000000000041234c                fgets
+                0x0000000000412358                fgets_unlocked
+                0x0000000000412364                ungetc
+                0x0000000000412382                fputc
+                0x00000000004123c4                putc_unlocked
+                0x00000000004123c6                putchar_unlocked
+                0x00000000004123d0                putc
+                0x00000000004123d2                fputs
+                0x0000000000412426                fputs_unlocked
+                0x0000000000412428                fseek
+                0x0000000000412460                fseeko
+                0x0000000000412498                ftell
+                0x00000000004124ce                fgetpos
+                0x00000000004124fe                fsetpos
+                0x000000000041254a                rewind
+                0x000000000041256e                fflush
+                0x0000000000412572                feof
+                0x000000000041257c                ferror
+                0x0000000000412586                ferror_unlocked
+                0x0000000000412590                clearerr
+                0x000000000041259c                fileno_unlocked
+                0x00000000004125b0                fileno
+                0x00000000004125b2                remove
+                0x00000000004125c4                tmpfile
+                0x000000000041260a                setbuf
+                0x000000000041260c                setvbuf
+                0x0000000000412610                getline
+                0x000000000041269a                sscanf
+                0x00000000004126ae                fscanf
+                0x00000000004126c2                scanf
+                0x00000000004126d8                vasprintf
+                0x0000000000412762                rename
+ .text          0x0000000000412772        0xc ../../user/lib/libc.a(stat.o)
+                0x0000000000412772                stat
+ .text          0x000000000041277e       0x2c ../../user/lib/libc.a(poll.o)
+                0x000000000041277e                poll
+ .text          0x00000000004127aa      0x15e ../../user/lib/libc.a(signal.o)
+                0x00000000004127aa                signal
+                0x00000000004127c8                raise
+                0x00000000004127fe                sigaction
+                0x0000000000412842                sigprocmask
+                0x00000000004128a2                sigemptyset
+                0x00000000004128b0                sigfillset
+                0x00000000004128be                sigaddset
+                0x00000000004128dc                sigismember
+                0x00000000004128fa                sigsuspend
+ .text          0x0000000000412908       0xb6 ../../user/lib/libc.a(time.o)
+                0x0000000000412908                gettimeofday
+                0x0000000000412920                settimeofday
+                0x0000000000412924                time
+                0x000000000041292e                clock
+                0x0000000000412932                asctime
+                0x000000000041293c                ctime
+                0x0000000000412946                gmtime
+                0x000000000041296a                gmtime_r
+                0x0000000000412996                localtime
+                0x0000000000412998                localtime_r
+                0x000000000041299a                nanosleep
+                0x00000000004129a8                strftime
+                0x00000000004129b4                mktime
+                0x00000000004129b8                timegm
+                0x00000000004129bc                strptime
+ .text          0x00000000004129be       0x26 ../../user/lib/libc.a(resource.o)
+                0x00000000004129be                getrusage
+                0x00000000004129d4                getrlimit
+                0x00000000004129e0                setrlimit
+ .text          0x00000000004129e4       0x64 ../../user/lib/libc.a(mman.o)
+                0x00000000004129e4                mmap
+                0x0000000000412a26                munmap
+ .text          0x0000000000412a48       0x14 ../../user/lib/libc.a(pwd.o)
+                0x0000000000412a48                getpwuid
+                0x0000000000412a52                getpwnam
+ .text          0x0000000000412a5c      0x278 ../../user/lib/libc.a(unistd_extra.o)
+                0x0000000000412a5c                getpid
+                0x0000000000412a60                getppid
+                0x0000000000412a64                getpgrp
+                0x0000000000412a68                getuid
+                0x0000000000412a6c                geteuid
+                0x0000000000412a70                getgid
+                0x0000000000412a74                getegid
+                0x0000000000412a78                setuid
+                0x0000000000412a7c                seteuid
+                0x0000000000412a80                setgid
+                0x0000000000412a84                setegid
+                0x0000000000412a88                sleep
+                0x0000000000412a8c                usleep
+                0x0000000000412a90                alarm
+                0x0000000000412a94                getgroups
+                0x0000000000412aa8                unlink
+                0x0000000000412ab2                rmdir
+                0x0000000000412ab4                lstat
+                0x0000000000412ac0                mkdir
+                0x0000000000412aca                mknod
+                0x0000000000412ada                chown
+                0x0000000000412ade                chmod
+                0x0000000000412ae2                lchown
+                0x0000000000412ae6                umask
+                0x0000000000412aea                access
+                0x0000000000412afe                getpagesize
+                0x0000000000412b02                sysconf
+                0x0000000000412b12                ftruncate
+                0x0000000000412b16                utimes
+                0x0000000000412b1a                link
+                0x0000000000412b2a                symlink
+                0x0000000000412b3a                fchdir
+                0x0000000000412b4a                chroot
+                0x0000000000412b5a                confstr
+                0x0000000000412b66                ctermid
+                0x0000000000412b78                fchown
+                0x0000000000412b88                fdatasync
+                0x0000000000412b98                fpathconf
+                0x0000000000412ba8                fsync
+                0x0000000000412bac                getdtablesize
+                0x0000000000412bb2                gethostid
+                0x0000000000412bb6                getlogin
+                0x0000000000412bc0                getlogin_r
+                0x0000000000412c0e                getpass
+                0x0000000000412c18                pause
+                0x0000000000412c26                pathconf
+                0x0000000000412c36                lockf
+                0x0000000000412c3a                nice
+                0x0000000000412c3e                setpgid
+                0x0000000000412c42                setpgrp
+                0x0000000000412c46                setregid
+                0x0000000000412c4a                setreuid
+                0x0000000000412c4e                sync
+                0x0000000000412c50                tcgetpgrp
+                0x0000000000412c60                tcsetpgrp
+                0x0000000000412c70                truncate
+                0x0000000000412c80                ualarm
+                0x0000000000412c82                execvp
+                0x0000000000412c88                execv
+                0x0000000000412c8a                vfork
+                0x0000000000412c8e                setsid
+                0x0000000000412c92                readlink
+                0x0000000000412ca2                ttyname_r
+                0x0000000000412cba                ttyname
+                0x0000000000412cc4                pipe
+ .text          0x0000000000412cd4       0x2a ../../user/lib/libc.a(strerror.o)
+                0x0000000000412cd4                strerror
+ .text          0x0000000000412cfe      0x132 ../../user/lib/libc.a(dirent.o)
+                0x0000000000412cfe                opendir
+                0x0000000000412d3e                readdir
+                0x0000000000412dec                closedir
+                0x0000000000412e0a                rewinddir
+ .text          0x0000000000412e30       0xc8 ../../user/lib/libc.a(fnmatch.o)
+                0x0000000000412ed8                fnmatch
+ .text          0x0000000000412ef8      0x164 ../../user/lib/libc.a(getopt.o)
+                0x0000000000412ef8                getopt
+ .text          0x000000000041305c       0x80 ../../user/lib/libc.a(socket.o)
+                0x000000000041305c                getsockname
+                0x000000000041306c                connect
+                0x000000000041307c                getpeername
+                0x000000000041308c                setsockopt
+                0x000000000041309c                socket
+                0x00000000004130ac                bind
+                0x00000000004130bc                listen
+                0x00000000004130cc                sendto
+ .text          0x00000000004130dc      0x108 ../../user/lib/libc.a(fcntl.o)
+                0x00000000004130dc                fcntl
+ .text          0x00000000004131e4       0x16 ../../user/lib/libc.a(times.o)
+                0x00000000004131e4                times
+ .text          0x00000000004131fa       0x14 ../../user/lib/libc.a(glob.o)
+                0x00000000004131fa                glob
+                0x000000000041320c                globfree
+ .text          0x000000000041320e        0x6 ../../user/lib/libc.a(setjmp.o)
+                0x000000000041320e                setjmp
+                0x0000000000413212                longjmp
+
+.rodata         0x0000000000413218     0x224a
+ *(SORT_BY_ALIGNMENT(.rodata) SORT_BY_ALIGNMENT(.rodata.*))
+ .rodata.str1.8
+                0x0000000000413218       0x24 libbb/lib.a(appletlib.o)
+ *fill*         0x000000000041323c        0x4 
+ .rodata        0x0000000000413240       0x10 libbb/lib.a(appletlib.o)
+                0x0000000000413240                applet_main
+ .rodata.str1.8
+                0x0000000000413250       0x2d libbb/lib.a(xfuncs.o)
+ *fill*         0x000000000041327d        0x3 
+ .rodata        0x0000000000413280      0x784 shell/lib.a(ash.o)
+ *fill*         0x0000000000413a04        0x4 
+ .rodata.str1.8
+                0x0000000000413a08      0x8ea shell/lib.a(ash.o)
+                                        0x932 (size before relaxing)
+ *fill*         0x00000000004142f2        0x6 
+ .rodata.str1.8
+                0x00000000004142f8       0xb4 shell/lib.a(shell_common.o)
+                                         0xbc (size before relaxing)
+ *fill*         0x00000000004143ac        0x4 
+ .rodata.str1.8
+                0x00000000004143b0      0x441 editors/lib.a(vi.o)
+                                        0x469 (size before relaxing)
+ *fill*         0x00000000004147f1        0x7 
+ .rodata.str1.8
+                0x00000000004147f8        0x7 libbb/lib.a(concat_path_file.o)
+                                         0x17 (size before relaxing)
+ *fill*         0x00000000004147ff        0x1 
+ .rodata.str1.8
+                0x0000000000414800       0x12 libbb/lib.a(getopt32.o)
+ .rodata.str1.8
+                0x0000000000414812        0x3 libbb/lib.a(perror_msg.o)
+ *fill*         0x0000000000414812        0x6 
+ .rodata.str1.8
+                0x0000000000414818        0xb libbb/lib.a(read_printf.o)
+                                         0x20 (size before relaxing)
+ *fill*         0x0000000000414823        0x5 
+ .rodata.str1.8
+                0x0000000000414828        0x5 libbb/lib.a(safe_poll.o)
+ *fill*         0x000000000041482d        0x3 
+ .rodata.str1.8
+                0x0000000000414830       0xc2 libbb/lib.a(time.o)
+ *fill*         0x00000000004148f2        0x6 
+ .rodata.str1.8
+                0x00000000004148f8       0x11 libbb/lib.a(u_signal_names.o)
+ .rodata.str1.8
+                0x0000000000414909       0x12 libbb/lib.a(verror_msg.o)
+ *fill*         0x0000000000414909        0x7 
+ .rodata.str1.8
+                0x0000000000414910       0x4d libbb/lib.a(xatonum.o)
+                                         0x65 (size before relaxing)
+ *fill*         0x000000000041495d        0x3 
+ .rodata.str1.8
+                0x0000000000414960      0x1cd libbb/lib.a(xfuncs_printf.o)
+                                        0x1d5 (size before relaxing)
+ *fill*         0x0000000000414b2d        0x3 
+ .rodata.str1.8
+                0x0000000000414b30        0xb libbb/lib.a(copyfd.o)
+                                         0x2b (size before relaxing)
+ *fill*         0x0000000000414b3b        0x5 
+ .rodata.str1.8
+                0x0000000000414b40        0x7 ../../user/lib/libc.a(string.o)
+ *fill*         0x0000000000414b47        0x1 
+ .rodata.str1.8
+                0x0000000000414b48       0x2a ../../user/lib/libc.a(printf.o)
+                                         0x32 (size before relaxing)
+ .rodata.str1.8
+                0x0000000000414b72       0x2a ../../user/lib/libc.a(stdlib.o)
+                                          0x7 (size before relaxing)
+ *fill*         0x0000000000414b72        0x6 
+ .rodata        0x0000000000414b78       0x3f ../../user/lib/libc.a(stdlib.o)
+ *fill*         0x0000000000414bb7        0x1 
+ .rodata.str1.8
+                0x0000000000414bb8       0x17 ../../user/lib/libc.a(stdio_file.o)
+ *fill*         0x0000000000414bcf        0x1 
+ .rodata.str1.8
+                0x0000000000414bd0       0x18 ../../user/lib/libc.a(pwd.o)
+ .rodata.str1.8
+                0x0000000000414be8        0x5 ../../user/lib/libc.a(unistd_extra.o)
+ .rodata.str1.8
+                0x0000000000414be8      0x12c ../../user/lib/libc.a(strerror.o)
+ *fill*         0x0000000000414d14        0x4 
+ .rodata        0x0000000000414d18      0x138 ../../user/lib/libc.a(strerror.o)
+ .rodata.str1.8
+                0x0000000000414e50        0x3 ../../user/lib/libc.a(getopt.o)
+ *fill*         0x0000000000414e53        0x1 
+ .rodata        0x0000000000414e54      0x22c editors/lib.a(vi.o)
+ .rodata        0x0000000000415080       0x58 ../../user/lib/libc.a(printf.o)
+ .rodata        0x00000000004150d8      0x10b shell/lib.a(shell_common.o)
+                0x00000000004151da                defoptindvar
+ *fill*         0x00000000004151e3        0x1 
+ .rodata        0x00000000004151e4        0xc libbb/lib.a(parse_mode.o)
+ .rodata        0x00000000004151f0      0x140 libbb/lib.a(messages.o)
+                0x00000000004151f0                bb_PATH_root_path
+                0x0000000000415213                bb_default_login_shell
+                0x000000000041521c                bb_busybox_exec_path
+                0x000000000041522b                bb_hexdigits_upcase
+                0x000000000041523c                bb_msg_standard_output
+                0x000000000041524c                bb_msg_standard_input
+                0x000000000041525b                bb_msg_invalid_arg_to
+                0x0000000000415279                bb_msg_requires_arg
+                0x0000000000415291                bb_msg_you_must_be_root
+                0x00000000004152a2                bb_msg_perm_denied_are_you_root
+                0x00000000004152c4                bb_msg_can_not_create_raw_socket
+                0x00000000004152dc                bb_msg_unknown
+                0x00000000004152e6                bb_msg_invalid_date
+                0x00000000004152f8                bb_msg_memory_exhausted
+                0x0000000000415306                bb_banner
+ .rodata        0x0000000000415330       0x67 libbb/lib.a(read_key.o)
+ .rodata        0x0000000000415397       0xcb libbb/lib.a(u_signal_names.o)
+
+.srodata        0x0000000000415462       0x53
+ .srodata       0x0000000000415462        0x7 libbb/lib.a(appletlib.o)
+                0x0000000000415462                applet_names
+ .srodata       0x0000000000415469       0x29 shell/lib.a(ash.o)
+ .srodata       0x0000000000415492        0x8 shell/lib.a(shell_common.o)
+                0x0000000000415492                defifsvar
+ .srodata       0x000000000041549a        0x5 editors/lib.a(vi.o)
+ *fill*         0x000000000041549f        0x1 
+ .srodata       0x00000000004154a0       0x15 libbb/lib.a(parse_mode.o)
+
+.srodata.cst8   0x00000000004154b8       0x10
+ .srodata.cst8  0x00000000004154b8       0x10 shell/lib.a(ash.o)
+
+.rela.dyn       0x00000000004154c8        0x0
+ .rela.text     0x00000000004154c8        0x0 ../../user/crt/start.o
+ .rela.text.startup
+                0x00000000004154c8        0x0 ../../user/crt/start.o
+
+.data           0x00000000004154c8       0x89
+ *(SORT_BY_ALIGNMENT(.data) SORT_BY_ALIGNMENT(.data.*))
+ .data          0x00000000004154c8       0x2c ../../user/lib/libc.a(stdio_file.o)
+ *fill*         0x00000000004154f4        0x4 
+ .data          0x00000000004154f8       0x20 ../../user/lib/libc.a(time.o)
+ .data          0x0000000000415518       0x20 ../../user/lib/libc.a(pwd.o)
+ .data          0x0000000000415538       0x19 ../../user/lib/libc.a(unistd_extra.o)
+
+.sdata          0x0000000000415558       0x50
+ .sdata         0x0000000000415558        0x1 libbb/lib.a(default_error_retval.o)
+                0x0000000000415558                xfunc_error_retval
+ *fill*         0x0000000000415559        0x7 
+ .sdata         0x0000000000415560       0x10 shell/lib.a(ash.o)
+ .sdata         0x0000000000415570        0xc libbb/lib.a(verror_msg.o)
+                0x0000000000415570                msg_eol
+                0x0000000000415578                logmode
+ *fill*         0x000000000041557c        0x4 
+ .sdata         0x0000000000415580        0x8 ../../user/lib/libc.a(stdlib.o)
+ .sdata         0x0000000000415588       0x18 ../../user/lib/libc.a(stdio_file.o)
+                0x0000000000415588                stderr
+                0x0000000000415590                stdout
+                0x0000000000415598                stdin
+ .sdata         0x00000000004155a0        0x8 ../../user/lib/libc.a(getopt.o)
+                0x00000000004155a0                opterr
+                0x00000000004155a4                optind
+
+.bss            0x00000000004155a8      0x348
+ *(SORT_BY_ALIGNMENT(.bss) SORT_BY_ALIGNMENT(.bss.*) SORT_BY_ALIGNMENT(COMMON))
+ COMMON         0x00000000004155a8        0x8 libbb/lib.a(appletlib.o)
+                0x00000000004155a8                applet_name
+ COMMON         0x00000000004155b0        0x8 libbb/lib.a(xfunc_die.o)
+                0x00000000004155b0                die_func
+ .bss           0x00000000004155b8        0xc libbb/lib.a(xfuncs.o)
+ *fill*         0x00000000004155c4        0x4 
+ .bss           0x00000000004155c8       0xa8 shell/lib.a(ash.o)
+ COMMON         0x0000000000415670       0x18 shell/lib.a(ash_ptr_hack.o)
+                0x0000000000415670                ash_ptr_to_globals_memstack
+                0x0000000000415678                ash_ptr_to_globals_misc
+                0x0000000000415680                ash_ptr_to_globals_var
+ COMMON         0x0000000000415688        0x8 libbb/lib.a(ptr_to_globals.o)
+                0x0000000000415688                ptr_to_globals
+ COMMON         0x0000000000415690        0x8 ../../user/lib/libc.a(stdlib.o)
+                0x0000000000415690                environ
+ .bss           0x0000000000415698       0x10 ../../user/lib/libc.a(malloc.o)
+ .bss           0x00000000004156a8       0x14 ../../user/lib/libc.a(stdio_file.o)
+ *fill*         0x00000000004156bc        0x4 
+ .bss           0x00000000004156c0      0x200 ../../user/lib/libc.a(signal.o)
+ .bss           0x00000000004158c0       0x24 ../../user/lib/libc.a(time.o)
+ COMMON         0x00000000004158e4        0x4 libbb/lib.a(getopt32.o)
+                0x00000000004158e4                option_mask32
+ COMMON         0x00000000004158e8        0x4 libbb/lib.a(signals.o)
+                0x00000000004158e8                bb_got_signal
+ COMMON         0x00000000004158ec        0x4 ../../user/lib/libc.a(errno.o)
+                0x00000000004158ec                errno
+
+.sbss           0x00000000004158f0      0x114
+ .sbss          0x00000000004158f0       0xd8 shell/lib.a(ash.o)
+ .sbss          0x00000000004159c8        0x8 ../../user/lib/libc.a(syscall.o)
+ .sbss          0x00000000004159d0        0x8 ../../user/lib/libc.a(string.o)
+ .sbss          0x00000000004159d8        0x8 ../../user/lib/libc.a(malloc.o)
+ .sbss          0x00000000004159e0        0x8 ../../user/lib/libc.a(signal.o)
+ .sbss          0x00000000004159e8        0x1 ../../user/lib/libc.a(unistd_extra.o)
+ *fill*         0x00000000004159e9        0x7 
+ .sbss          0x00000000004159f0       0x14 ../../user/lib/libc.a(getopt.o)
+                0x00000000004159f8                optarg
+                0x0000000000415a00                optopt
+
+/DISCARD/
+ *(SORT_BY_ALIGNMENT(.eh_frame) SORT_BY_ALIGNMENT(.note) SORT_BY_ALIGNMENT(.comment))
+LOAD ../../user/crt/start.o
+START GROUP
+LOAD applets/built-in.o
+LOAD archival/lib.a
+LOAD archival/libarchive/lib.a
+LOAD console-tools/lib.a
+LOAD coreutils/lib.a
+LOAD coreutils/libcoreutils/lib.a
+LOAD debianutils/lib.a
+LOAD klibc-utils/lib.a
+LOAD e2fsprogs/lib.a
+LOAD editors/lib.a
+LOAD findutils/lib.a
+LOAD init/lib.a
+LOAD libbb/lib.a
+LOAD libpwdgrp/lib.a
+LOAD loginutils/lib.a
+LOAD mailutils/lib.a
+LOAD miscutils/lib.a
+LOAD modutils/lib.a
+LOAD networking/lib.a
+LOAD networking/libiproute/lib.a
+LOAD networking/udhcp/lib.a
+LOAD printutils/lib.a
+LOAD procps/lib.a
+LOAD runit/lib.a
+LOAD selinux/lib.a
+LOAD shell/lib.a
+LOAD sysklogd/lib.a
+LOAD util-linux/lib.a
+LOAD util-linux/volume_id/lib.a
+LOAD archival/built-in.o
+LOAD archival/libarchive/built-in.o
+LOAD console-tools/built-in.o
+LOAD coreutils/built-in.o
+LOAD coreutils/libcoreutils/built-in.o
+LOAD debianutils/built-in.o
+LOAD klibc-utils/built-in.o
+LOAD e2fsprogs/built-in.o
+LOAD editors/built-in.o
+LOAD findutils/built-in.o
+LOAD init/built-in.o
+LOAD libbb/built-in.o
+LOAD libpwdgrp/built-in.o
+LOAD loginutils/built-in.o
+LOAD mailutils/built-in.o
+LOAD miscutils/built-in.o
+LOAD modutils/built-in.o
+LOAD networking/built-in.o
+LOAD networking/libiproute/built-in.o
+LOAD networking/udhcp/built-in.o
+LOAD printutils/built-in.o
+LOAD procps/built-in.o
+LOAD runit/built-in.o
+LOAD selinux/built-in.o
+LOAD shell/built-in.o
+LOAD sysklogd/built-in.o
+LOAD util-linux/built-in.o
+LOAD util-linux/volume_id/built-in.o
+END GROUP
+START GROUP
+LOAD ../../user/lib/libc.a
+END GROUP
+OUTPUT(busybox_unstripped elf64-littleriscv)
+
+.riscv.attributes
+                0x0000000000000000       0x2b
+ .riscv.attributes
+                0x0000000000000000       0x29 ../../user/crt/start.o
+ .riscv.attributes
+                0x0000000000000029       0x2b libbb/lib.a(appletlib.o)
+ .riscv.attributes
+                0x0000000000000054       0x2b libbb/lib.a(compare_string_array.o)
+ .riscv.attributes
+                0x000000000000007f       0x2b libbb/lib.a(default_error_retval.o)
+ .riscv.attributes
+                0x00000000000000aa       0x2b libbb/lib.a(get_last_path_component.o)
+ .riscv.attributes
+                0x00000000000000d5       0x2b libbb/lib.a(last_char_is.o)
+ .riscv.attributes
+                0x0000000000000100       0x2b libbb/lib.a(xfunc_die.o)
+ .riscv.attributes
+                0x000000000000012b       0x2b libbb/lib.a(xfuncs.o)
+ .riscv.attributes
+                0x0000000000000156       0x2b libbb/lib.a(full_write.o)
+ .riscv.attributes
+                0x0000000000000181       0x2b libbb/lib.a(messages.o)
+ .riscv.attributes
+                0x00000000000001ac       0x2b libbb/lib.a(safe_write.o)
+ .riscv.attributes
+                0x00000000000001d7       0x2b shell/lib.a(ash.o)
+ .riscv.attributes
+                0x0000000000000202       0x2b shell/lib.a(ash_ptr_hack.o)
+ .riscv.attributes
+                0x000000000000022d       0x2b shell/lib.a(shell_common.o)
+ .riscv.attributes
+                0x0000000000000258       0x2b editors/lib.a(vi.o)
+ .riscv.attributes
+                0x0000000000000283       0x2b libbb/lib.a(bb_strtonum.o)
+ .riscv.attributes
+                0x00000000000002ae       0x2b libbb/lib.a(concat_path_file.o)
+ .riscv.attributes
+                0x00000000000002d9       0x2b libbb/lib.a(endofname.o)
+ .riscv.attributes
+                0x0000000000000304       0x2b libbb/lib.a(getopt32.o)
+ .riscv.attributes
+                0x000000000000032f       0x2b libbb/lib.a(llist.o)
+ .riscv.attributes
+                0x000000000000035a       0x2b libbb/lib.a(parse_mode.o)
+ .riscv.attributes
+                0x0000000000000385       0x2b libbb/lib.a(perror_msg.o)
+ .riscv.attributes
+                0x00000000000003b0       0x2b libbb/lib.a(ptr_to_globals.o)
+ .riscv.attributes
+                0x00000000000003db       0x2b libbb/lib.a(read.o)
+ .riscv.attributes
+                0x0000000000000406       0x2b libbb/lib.a(read_key.o)
+ .riscv.attributes
+                0x0000000000000431       0x2b libbb/lib.a(read_printf.o)
+ .riscv.attributes
+                0x000000000000045c       0x2b libbb/lib.a(safe_poll.o)
+ .riscv.attributes
+                0x0000000000000487       0x2b libbb/lib.a(safe_strncpy.o)
+ .riscv.attributes
+                0x00000000000004b2       0x2b libbb/lib.a(signals.o)
+ .riscv.attributes
+                0x00000000000004dd       0x2b libbb/lib.a(sysconf.o)
+ .riscv.attributes
+                0x0000000000000508       0x2b libbb/lib.a(time.o)
+ .riscv.attributes
+                0x0000000000000533       0x2b libbb/lib.a(u_signal_names.o)
+ .riscv.attributes
+                0x000000000000055e       0x2b libbb/lib.a(verror_msg.o)
+ .riscv.attributes
+                0x0000000000000589       0x2b libbb/lib.a(xatonum.o)
+ .riscv.attributes
+                0x00000000000005b4       0x2b libbb/lib.a(xfuncs_printf.o)
+ .riscv.attributes
+                0x00000000000005df       0x2b libbb/lib.a(copyfd.o)
+ .riscv.attributes
+                0x000000000000060a       0x2b ../../user/lib/libc.a(syscall.o)
+ .riscv.attributes
+                0x0000000000000635       0x2b ../../user/lib/libc.a(string.o)
+ .riscv.attributes
+                0x0000000000000660       0x2b ../../user/lib/libc.a(ctype.o)
+ .riscv.attributes
+                0x000000000000068b       0x2b ../../user/lib/libc.a(printf.o)
+ .riscv.attributes
+                0x00000000000006b6       0x2b ../../user/lib/libc.a(stdlib.o)
+ .riscv.attributes
+                0x00000000000006e1       0x2b ../../user/lib/libc.a(malloc.o)
+ .riscv.attributes
+                0x000000000000070c       0x2b ../../user/lib/libc.a(errno.o)
+ .riscv.attributes
+                0x0000000000000737       0x2b ../../user/lib/libc.a(termios.o)
+ .riscv.attributes
+                0x0000000000000762       0x2b ../../user/lib/libc.a(isatty.o)
+ .riscv.attributes
+                0x000000000000078d       0x2b ../../user/lib/libc.a(stdio_file.o)
+ .riscv.attributes
+                0x00000000000007b8       0x2b ../../user/lib/libc.a(stat.o)
+ .riscv.attributes
+                0x00000000000007e3       0x2b ../../user/lib/libc.a(poll.o)
+ .riscv.attributes
+                0x000000000000080e       0x2b ../../user/lib/libc.a(signal.o)
+ .riscv.attributes
+                0x0000000000000839       0x2b ../../user/lib/libc.a(time.o)
+ .riscv.attributes
+                0x0000000000000864       0x2b ../../user/lib/libc.a(resource.o)
+ .riscv.attributes
+                0x000000000000088f       0x2b ../../user/lib/libc.a(mman.o)
+ .riscv.attributes
+                0x00000000000008ba       0x2b ../../user/lib/libc.a(pwd.o)
+ .riscv.attributes
+                0x00000000000008e5       0x2b ../../user/lib/libc.a(unistd_extra.o)
+ .riscv.attributes
+                0x0000000000000910       0x2b ../../user/lib/libc.a(strerror.o)
+ .riscv.attributes
+                0x000000000000093b       0x2b ../../user/lib/libc.a(dirent.o)
+ .riscv.attributes
+                0x0000000000000966       0x2b ../../user/lib/libc.a(fnmatch.o)
+ .riscv.attributes
+                0x0000000000000991       0x2b ../../user/lib/libc.a(getopt.o)
+ .riscv.attributes
+                0x00000000000009bc       0x2b ../../user/lib/libc.a(socket.o)
+ .riscv.attributes
+                0x00000000000009e7       0x2b ../../user/lib/libc.a(fcntl.o)
+ .riscv.attributes
+                0x0000000000000a12       0x2b ../../user/lib/libc.a(times.o)
+ .riscv.attributes
+                0x0000000000000a3d       0x2b ../../user/lib/libc.a(glob.o)
+ .riscv.attributes
+                0x0000000000000a68       0x2b ../../user/lib/libc.a(setjmp.o)

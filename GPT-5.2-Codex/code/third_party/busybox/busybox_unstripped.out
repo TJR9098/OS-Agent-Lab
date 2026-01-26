@@ -1,0 +1,326 @@
+Output of:
+riscv64-unknown-elf-gcc -Wall -Wextra -O2 -ffreestanding -fno-builtin -fno-stack-protector -fno-pic -fno-pie -march=rv64imac -mabi=lp64 -mcmodel=medany -Iinclude -I../../user/include -I../../user/include/sys -I../../user/include/linux -static -nostdlib -no-pie -Wl,--build-id=none -L../../user/lib -Wl,-T,../../user/linker.ld -Wl,../../user/crt/start.o -o busybox_unstripped -Wl,--sort-common -Wl,--sort-section,alignment -Wl,--gc-sections -Wl,--start-group applets/built-in.o archival/lib.a archival/libarchive/lib.a console-tools/lib.a coreutils/lib.a coreutils/libcoreutils/lib.a debianutils/lib.a klibc-utils/lib.a e2fsprogs/lib.a editors/lib.a findutils/lib.a init/lib.a libbb/lib.a libpwdgrp/lib.a loginutils/lib.a mailutils/lib.a miscutils/lib.a modutils/lib.a networking/lib.a networking/libiproute/lib.a networking/udhcp/lib.a printutils/lib.a procps/lib.a runit/lib.a selinux/lib.a shell/lib.a sysklogd/lib.a util-linux/lib.a util-linux/volume_id/lib.a archival/built-in.o archival/libarchive/built-in.o console-tools/built-in.o coreutils/built-in.o coreutils/libcoreutils/built-in.o debianutils/built-in.o klibc-utils/built-in.o e2fsprogs/built-in.o editors/built-in.o findutils/built-in.o init/built-in.o libbb/built-in.o libpwdgrp/built-in.o loginutils/built-in.o mailutils/built-in.o miscutils/built-in.o modutils/built-in.o networking/built-in.o networking/libiproute/built-in.o networking/udhcp/built-in.o printutils/built-in.o procps/built-in.o runit/built-in.o selinux/built-in.o shell/built-in.o sysklogd/built-in.o util-linux/built-in.o util-linux/volume_id/built-in.o -Wl,--end-group -Wl,--start-group -lc -Wl,--end-group -Wl,--warn-common -Wl,-Map,busybox_unstripped.map -Wl,--verbose
+==========
+GNU ld () 2.34
+  Supported emulations:
+   elf64lriscv
+   elf32lriscv
+using external linker script:
+==================================================
+ENTRY(_start)
+
+SECTIONS
+{
+  . = 0x400000;
+  .text : {
+    *(.text .text.*)
+  }
+  .rodata : {
+    *(.rodata .rodata.*)
+  }
+  .data : {
+    *(.data .data.*)
+  }
+  .bss : {
+    *(.bss .bss.* COMMON)
+  }
+  /DISCARD/ : {
+    *(.eh_frame .note .comment)
+  }
+}
+==================================================
+/usr/lib/riscv64-unknown-elf/bin/ld: mode elf64lriscv
+attempt to open ../../user/crt/start.o succeeded
+../../user/crt/start.o
+attempt to open applets/built-in.o succeeded
+applets/built-in.o
+attempt to open archival/lib.a succeeded
+archival/lib.a
+attempt to open archival/libarchive/lib.a succeeded
+archival/libarchive/lib.a
+attempt to open console-tools/lib.a succeeded
+console-tools/lib.a
+attempt to open coreutils/lib.a succeeded
+coreutils/lib.a
+attempt to open coreutils/libcoreutils/lib.a succeeded
+coreutils/libcoreutils/lib.a
+attempt to open debianutils/lib.a succeeded
+debianutils/lib.a
+attempt to open klibc-utils/lib.a succeeded
+klibc-utils/lib.a
+attempt to open e2fsprogs/lib.a succeeded
+e2fsprogs/lib.a
+attempt to open editors/lib.a succeeded
+editors/lib.a
+attempt to open findutils/lib.a succeeded
+findutils/lib.a
+attempt to open init/lib.a succeeded
+init/lib.a
+attempt to open libbb/lib.a succeeded
+libbb/lib.a
+(libbb/lib.a)appletlib.o
+(libbb/lib.a)compare_string_array.o
+(libbb/lib.a)default_error_retval.o
+(libbb/lib.a)get_last_path_component.o
+(libbb/lib.a)last_char_is.o
+(libbb/lib.a)xfunc_die.o
+(libbb/lib.a)xfuncs.o
+(libbb/lib.a)full_write.o
+(libbb/lib.a)messages.o
+(libbb/lib.a)safe_write.o
+attempt to open libpwdgrp/lib.a succeeded
+libpwdgrp/lib.a
+attempt to open loginutils/lib.a succeeded
+loginutils/lib.a
+attempt to open mailutils/lib.a succeeded
+mailutils/lib.a
+attempt to open miscutils/lib.a succeeded
+miscutils/lib.a
+attempt to open modutils/lib.a succeeded
+modutils/lib.a
+attempt to open networking/lib.a succeeded
+networking/lib.a
+attempt to open networking/libiproute/lib.a succeeded
+networking/libiproute/lib.a
+attempt to open networking/udhcp/lib.a succeeded
+networking/udhcp/lib.a
+attempt to open printutils/lib.a succeeded
+printutils/lib.a
+attempt to open procps/lib.a succeeded
+procps/lib.a
+attempt to open runit/lib.a succeeded
+runit/lib.a
+attempt to open selinux/lib.a succeeded
+selinux/lib.a
+attempt to open shell/lib.a succeeded
+shell/lib.a
+(shell/lib.a)ash.o
+(shell/lib.a)ash_ptr_hack.o
+(shell/lib.a)shell_common.o
+attempt to open sysklogd/lib.a succeeded
+sysklogd/lib.a
+attempt to open util-linux/lib.a succeeded
+util-linux/lib.a
+attempt to open util-linux/volume_id/lib.a succeeded
+util-linux/volume_id/lib.a
+attempt to open archival/built-in.o succeeded
+archival/built-in.o
+attempt to open archival/libarchive/built-in.o succeeded
+archival/libarchive/built-in.o
+attempt to open console-tools/built-in.o succeeded
+console-tools/built-in.o
+attempt to open coreutils/built-in.o succeeded
+coreutils/built-in.o
+attempt to open coreutils/libcoreutils/built-in.o succeeded
+coreutils/libcoreutils/built-in.o
+attempt to open debianutils/built-in.o succeeded
+debianutils/built-in.o
+attempt to open klibc-utils/built-in.o succeeded
+klibc-utils/built-in.o
+attempt to open e2fsprogs/built-in.o succeeded
+e2fsprogs/built-in.o
+attempt to open editors/built-in.o succeeded
+editors/built-in.o
+attempt to open findutils/built-in.o succeeded
+findutils/built-in.o
+attempt to open init/built-in.o succeeded
+init/built-in.o
+attempt to open libbb/built-in.o succeeded
+libbb/built-in.o
+attempt to open libpwdgrp/built-in.o succeeded
+libpwdgrp/built-in.o
+attempt to open loginutils/built-in.o succeeded
+loginutils/built-in.o
+attempt to open mailutils/built-in.o succeeded
+mailutils/built-in.o
+attempt to open miscutils/built-in.o succeeded
+miscutils/built-in.o
+attempt to open modutils/built-in.o succeeded
+modutils/built-in.o
+attempt to open networking/built-in.o succeeded
+networking/built-in.o
+attempt to open networking/libiproute/built-in.o succeeded
+networking/libiproute/built-in.o
+attempt to open networking/udhcp/built-in.o succeeded
+networking/udhcp/built-in.o
+attempt to open printutils/built-in.o succeeded
+printutils/built-in.o
+attempt to open procps/built-in.o succeeded
+procps/built-in.o
+attempt to open runit/built-in.o succeeded
+runit/built-in.o
+attempt to open selinux/built-in.o succeeded
+selinux/built-in.o
+attempt to open shell/built-in.o succeeded
+shell/built-in.o
+attempt to open sysklogd/built-in.o succeeded
+sysklogd/built-in.o
+attempt to open util-linux/built-in.o succeeded
+util-linux/built-in.o
+attempt to open util-linux/volume_id/built-in.o succeeded
+util-linux/volume_id/built-in.o
+archival/lib.a
+archival/libarchive/lib.a
+console-tools/lib.a
+coreutils/lib.a
+coreutils/libcoreutils/lib.a
+debianutils/lib.a
+klibc-utils/lib.a
+e2fsprogs/lib.a
+editors/lib.a
+(editors/lib.a)vi.o
+findutils/lib.a
+init/lib.a
+libbb/lib.a
+(libbb/lib.a)bb_strtonum.o
+(libbb/lib.a)concat_path_file.o
+(libbb/lib.a)endofname.o
+(libbb/lib.a)getopt32.o
+(libbb/lib.a)llist.o
+(libbb/lib.a)parse_mode.o
+(libbb/lib.a)perror_msg.o
+(libbb/lib.a)ptr_to_globals.o
+(libbb/lib.a)read.o
+(libbb/lib.a)read_key.o
+(libbb/lib.a)read_printf.o
+(libbb/lib.a)safe_poll.o
+(libbb/lib.a)safe_strncpy.o
+(libbb/lib.a)signals.o
+(libbb/lib.a)sysconf.o
+(libbb/lib.a)time.o
+(libbb/lib.a)u_signal_names.o
+(libbb/lib.a)verror_msg.o
+(libbb/lib.a)xatonum.o
+(libbb/lib.a)xfuncs_printf.o
+(libbb/lib.a)copyfd.o
+libpwdgrp/lib.a
+loginutils/lib.a
+mailutils/lib.a
+miscutils/lib.a
+modutils/lib.a
+networking/lib.a
+networking/libiproute/lib.a
+networking/udhcp/lib.a
+printutils/lib.a
+procps/lib.a
+runit/lib.a
+selinux/lib.a
+shell/lib.a
+sysklogd/lib.a
+util-linux/lib.a
+util-linux/volume_id/lib.a
+archival/built-in.o
+archival/libarchive/built-in.o
+console-tools/built-in.o
+coreutils/built-in.o
+coreutils/libcoreutils/built-in.o
+debianutils/built-in.o
+klibc-utils/built-in.o
+e2fsprogs/built-in.o
+editors/built-in.o
+findutils/built-in.o
+init/built-in.o
+libbb/built-in.o
+libpwdgrp/built-in.o
+loginutils/built-in.o
+mailutils/built-in.o
+miscutils/built-in.o
+modutils/built-in.o
+networking/built-in.o
+networking/libiproute/built-in.o
+networking/udhcp/built-in.o
+printutils/built-in.o
+procps/built-in.o
+runit/built-in.o
+selinux/built-in.o
+shell/built-in.o
+sysklogd/built-in.o
+util-linux/built-in.o
+util-linux/volume_id/built-in.o
+archival/lib.a
+archival/libarchive/lib.a
+console-tools/lib.a
+coreutils/lib.a
+coreutils/libcoreutils/lib.a
+debianutils/lib.a
+klibc-utils/lib.a
+e2fsprogs/lib.a
+editors/lib.a
+findutils/lib.a
+init/lib.a
+libbb/lib.a
+libpwdgrp/lib.a
+loginutils/lib.a
+mailutils/lib.a
+miscutils/lib.a
+modutils/lib.a
+networking/lib.a
+networking/libiproute/lib.a
+networking/udhcp/lib.a
+printutils/lib.a
+procps/lib.a
+runit/lib.a
+selinux/lib.a
+shell/lib.a
+sysklogd/lib.a
+util-linux/lib.a
+util-linux/volume_id/lib.a
+archival/built-in.o
+archival/libarchive/built-in.o
+console-tools/built-in.o
+coreutils/built-in.o
+coreutils/libcoreutils/built-in.o
+debianutils/built-in.o
+klibc-utils/built-in.o
+e2fsprogs/built-in.o
+editors/built-in.o
+findutils/built-in.o
+init/built-in.o
+libbb/built-in.o
+libpwdgrp/built-in.o
+loginutils/built-in.o
+mailutils/built-in.o
+miscutils/built-in.o
+modutils/built-in.o
+networking/built-in.o
+networking/libiproute/built-in.o
+networking/udhcp/built-in.o
+printutils/built-in.o
+procps/built-in.o
+runit/built-in.o
+selinux/built-in.o
+shell/built-in.o
+sysklogd/built-in.o
+util-linux/built-in.o
+util-linux/volume_id/built-in.o
+attempt to open ../../user/lib/libc.so failed
+attempt to open ../../user/lib/libc.a succeeded
+../../user/lib/libc.a
+(../../user/lib/libc.a)syscall.o
+(../../user/lib/libc.a)string.o
+(../../user/lib/libc.a)ctype.o
+(../../user/lib/libc.a)printf.o
+(../../user/lib/libc.a)stdlib.o
+(../../user/lib/libc.a)malloc.o
+(../../user/lib/libc.a)errno.o
+(../../user/lib/libc.a)termios.o
+(../../user/lib/libc.a)isatty.o
+(../../user/lib/libc.a)stdio_file.o
+(../../user/lib/libc.a)stat.o
+(../../user/lib/libc.a)poll.o
+(../../user/lib/libc.a)signal.o
+(../../user/lib/libc.a)time.o
+(../../user/lib/libc.a)resource.o
+(../../user/lib/libc.a)mman.o
+(../../user/lib/libc.a)pwd.o
+(../../user/lib/libc.a)unistd_extra.o
+(../../user/lib/libc.a)strerror.o
+(../../user/lib/libc.a)dirent.o
+(../../user/lib/libc.a)fnmatch.o
+(../../user/lib/libc.a)getopt.o
+(../../user/lib/libc.a)socket.o
+(../../user/lib/libc.a)fcntl.o
+(../../user/lib/libc.a)times.o
+(../../user/lib/libc.a)glob.o
+(../../user/lib/libc.a)setjmp.o
+../../user/lib/libc.a
