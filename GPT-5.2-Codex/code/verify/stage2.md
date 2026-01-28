@@ -1,5 +1,16 @@
 ﻿# Stage2 验证（Pending）
 
+## 阶段新增与修复（相对 Stage1）
+- 内核解析 DTB 获取 virtio-mmio 列表，并按 `root_disk_index` 选择根盘（越界回退 0）。
+- 完成 virtio-blk + block 层读写接口，并提供块设备读写自测。
+- FAT32 从只读扩展为可写：支持 LFN/8.3 生成、create/mkdir/unlink/truncate/write/read。
+- 引入简化 VFS：挂载点、CWD、路径解析、`*_at` 接口、自动创建父目录、`getcwd`、`readdir` 注入 `./..`。
+- RAMFS 支持读写、mkdir/create/unlink/truncate。
+- 基础进程/VM/系统调用框架就绪：用户页表、copyin/out、fork/exec/wait/exit、round-robin + 定时器抢占。
+- 新增 FAT32 镜像工具：生成含 MBR 的 128MB FAT32，并预置 `/ram`。
+- stdin 读入支持回显与退格（内核 `sys_read` 实现）。
+- 修复：根盘越界选择、块设备自测写回恢复、若干系统调用稳定性问题。
+
 注意：WSL 启动噪声已省略。QEMU 日志仅保留相关片段。
 
 ## 环境
@@ -290,3 +301,4 @@ static int selftest_vfs_basic(void) {
 
 ## Skipped
 - stdin 回显/退格验证。
+

@@ -92,6 +92,7 @@ pid_t tcgetpgrp(int fd);
 int tcsetpgrp(int fd, pid_t pgrp);
 int truncate(const char *path, off_t length);
 useconds_t ualarm(useconds_t usecs, useconds_t interval);
+int reboot(int magic1, int magic2, unsigned int cmd, void *arg);
 
 extern char **environ;
 

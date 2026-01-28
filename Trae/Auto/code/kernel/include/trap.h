@@ -37,8 +37,6 @@ typedef struct trapframe {
     uint64_t t4;
     uint64_t t5;
     uint64_t t6;
-    
-    // 控制寄存器
     uint64_t sepc;
     uint64_t sstatus;
     uint64_t usp;

@@ -10,6 +10,7 @@ static uint64_t g_timer_interval = 0;
 static uint32_t g_tick_hz = 0;
 static volatile uint64_t g_ticks = 0;
 static uint64_t g_next_deadline = 0;
+static uint64_t g_timebase_hz = 10000000ULL;
 
 static inline uint64_t read_time(void) {
   return read_csr(time);
@@ -34,6 +35,7 @@ void timer_init(uint64_t hartid, const struct bootinfo *bi) {
   }
 
   g_tick_hz = tick_hz;
+  g_timebase_hz = timebase;
   g_timer_interval = timebase / tick_hz;
   if (g_timer_interval == 0) {
     g_timer_interval = 1;
@@ -70,4 +72,12 @@ void timer_handle(uint64_t hartid) {
 
 uint64_t timer_ticks(void) {
   return g_ticks;
+}
+
+uint64_t timer_timebase_hz(void) {
+  return g_timebase_hz;
+}
+
+uint32_t timer_hz(void) {
+  return g_tick_hz;
 }

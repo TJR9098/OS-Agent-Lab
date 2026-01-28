@@ -6,6 +6,8 @@ struct trapframe;
 
 #define SYS_DUP 23
 #define SYS_DUP3 24
+#define SYS_FTRUNCATE 46
+#define SYS_POLL 7
 #define SYS_IOCTL 29
 #define SYS_GETCWD 17
 #define SYS_CHDIR 49
@@ -20,6 +22,13 @@ struct trapframe;
 #define SYS_FSTATAT 79
 #define SYS_FSTAT 80
 #define SYS_EXIT 93
+#define SYS_REBOOT 142
+#define SYS_GETPID 172
+#define SYS_GETPPID 173
+#define SYS_GETUID 174
+#define SYS_GETEUID 175
+#define SYS_GETGID 176
+#define SYS_GETEGID 177
 #define SYS_BRK 214
 #define SYS_CLONE 220
 #define SYS_EXECVE 221

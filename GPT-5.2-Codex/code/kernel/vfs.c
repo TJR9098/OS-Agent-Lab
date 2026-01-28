@@ -20,6 +20,38 @@ static struct mount g_mounts[MAX_MOUNTS];
 static struct vnode *g_root;
 static struct vnode *g_cwd;
 
+static int vfs_name_eq_nocase(const char *a, const char *b) {
+  while (*a && *b) {
+    char ca = *a;
+    char cb = *b;
+    if (ca >= 'A' && ca <= 'Z') {
+      ca = (char)(ca - 'A' + 'a');
+    }
+    if (cb >= 'A' && cb <= 'Z') {
+      cb = (char)(cb - 'A' + 'a');
+    }
+    if (ca != cb) {
+      return 0;
+    }
+    a++;
+    b++;
+  }
+  return *a == *b;
+}
+
+static int vfs_is_root_vnode(struct vnode *vn) {
+  if (!vn) {
+    return 0;
+  }
+  if (vn == vfs_root()) {
+    return 1;
+  }
+  if (vn->parent == vn && vn->name[0] == '\0') {
+    return 1;
+  }
+  return 0;
+}
+
 struct vnode *vfs_alloc_vnode(void) {
   for (size_t i = 0; i < VNODE_POOL_SIZE; i++) {
     if (!g_vnode_used[i]) {
@@ -91,6 +123,10 @@ struct vnode *vfs_follow_mount(struct vnode *vn) {
   }
   for (size_t i = 0; i < MAX_MOUNTS; i++) {
     if (g_mounts[i].mountpoint == vn) {
+      return g_mounts[i].root;
+    }
+    if (g_mounts[i].mountpoint && vn->type == VNODE_DIR && vfs_is_root_vnode(vn->parent) &&
+        vfs_name_eq_nocase(vn->name, g_mounts[i].mountpoint->name)) {
       return g_mounts[i].root;
     }
   }

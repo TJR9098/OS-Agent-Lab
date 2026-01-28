@@ -1,5 +1,13 @@
 ﻿# Stage3 验证（Pending）
 
+## 阶段新增与修复（相对 Stage2）
+- 新增 user/ 用户态目录：最小 libc、启动代码、示例程序与 user/Makefile。
+- 内核作为 PID 1 自动启动 /bin/sh，初始 CWD 为 /，提示符显示 root@qemu:/path$。
+- 提供基础用户命令：/bin/sh、ls、mkdir、touch、mkhello、cat、memtest、tcc。
+- 引入 /bin/picoc 与 BusyBox vi（用于后续编辑/解释执行）。
+- mkfs_fat32.py 支持从宿主机拷贝整个 rootfs 目录树到镜像根目录。
+- 修复：/bin/sh 加载失败（根盘未包含 rootfs）的问题，并稳定 shebang 执行路径。
+
 注意：WSL 启动噪声已省略。QEMU 日志仅保留相关片段。
 
 ## 环境
@@ -459,3 +467,5 @@ root@qemu:/$ exit 0
 - fstat/fstatat 独立验证（未提供单独测试程序）。
 - vi/vim 交互验证（需人工交互）。
 - stdin 退格/删除回显验证（需人工交互）。
+
+

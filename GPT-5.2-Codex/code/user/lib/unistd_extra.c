@@ -3,31 +3,7 @@
 #include <sys/time.h>
 #include <string.h>
 
-pid_t getpid(void) {
-  return 1;
-}
-
-pid_t getppid(void) {
-  return 1;
-}
-
 pid_t getpgrp(void) {
-  return 0;
-}
-
-uid_t getuid(void) {
-  return 0;
-}
-
-uid_t geteuid(void) {
-  return 0;
-}
-
-gid_t getgid(void) {
-  return 0;
-}
-
-gid_t getegid(void) {
   return 0;
 }
 
@@ -142,12 +118,6 @@ long sysconf(int name) {
     return 100;
   }
   return -1;
-}
-
-int ftruncate(int fd, off_t length) {
-  (void)fd;
-  (void)length;
-  return 0;
 }
 
 int utimes(const char *path, const struct timeval times[2]) {

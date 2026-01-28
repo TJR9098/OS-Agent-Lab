@@ -1,10 +1,20 @@
 CROSS ?= riscv64-unknown-elf-
 CC := $(CROSS)gcc
 AR := $(CROSS)ar
-RISCV_ARCH ?= rv64imac
+RISCV_ARCH_ORIGIN := $(origin RISCV_ARCH)
+RISCV_ARCH_BASE ?= rv64gc
+ifeq ($(RISCV_ARCH_ORIGIN), undefined)
+RISCV_ZICSR_SUPPORTED := $(shell printf '' | $(CC) -x c - -c -o /dev/null -march=$(RISCV_ARCH_BASE)_zicsr -mabi=lp64 >/dev/null 2>&1 && echo 1 || echo 0)
+ifeq ($(RISCV_ZICSR_SUPPORTED),1)
+RISCV_ARCH := $(RISCV_ARCH_BASE)_zicsr
+else
+RISCV_ARCH := $(RISCV_ARCH_BASE)
+endif
+endif
+RISCV_ARCH ?= $(RISCV_ARCH_BASE)
 
 CFLAGS := -Wall -Wextra -O2 -ffreestanding -fno-builtin -fno-stack-protector -fno-pic -fno-pie \
-	-march=$(RISCV_ARCH) -mabi=lp64 -mcmodel=medany -Iinclude
+	-march=$(RISCV_ARCH) -mabi=lp64 -mcmodel=medany -msmall-data-limit=0 -Iinclude
 ASFLAGS := -march=$(RISCV_ARCH) -mabi=lp64
 LDFLAGS := -T linker.ld -nostdlib -no-pie -Wl,--build-id=none
 LDLIBS := -lgcc
@@ -23,7 +33,7 @@ LIBM := lib/libm.a
 
 CRT_OBJS := crt/start.o
 
-PROGS := sh ls mkdir touch mkhello cat memtest tcc
+PROGS := sh ls mkdir touch mkhello cat memtest tcc echo rm poweroff cp
 BIN_DIR := bin
 ROOTFS_BIN := rootfs/bin
 ROOTFS_INCLUDE := rootfs/include
@@ -36,7 +46,7 @@ BUSYBOX_BIN := $(BUSYBOX_DIR)/busybox
 PICO_DIR := ../third_party/picoc
 PICO_BIN := $(PICO_DIR)/picoc
 PICO_CFLAGS := -Wall -Wextra -O2 -ffreestanding -fno-builtin -fno-stack-protector -fno-pic -fno-pie \
-	-march=$(RISCV_ARCH) -mabi=lp64 -mcmodel=medany -DUNIX_HOST -DNO_FP -DVER=\\\"2.1\\\" -I../../user/include
+	-march=$(RISCV_ARCH) -mabi=lp64 -mcmodel=medany -msmall-data-limit=0 -DUNIX_HOST -DNO_FP -DVER=\\\"2.1\\\" -I../../user/include
 PICO_LDFLAGS := -T ../../user/linker.ld -nostdlib -no-pie ../../user/crt/start.o
 PICO_LIBS := ../../user/lib/libc.a -lgcc
 

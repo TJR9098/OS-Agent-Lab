@@ -370,7 +370,8 @@ static int proc_exec_common_depth(struct proc *p, const char *path, char *const 
   p->sz = PGROUNDUP(info.sz);
   memset(p->tf, 0, sizeof(*p->tf));
   p->tf->sepc = info.entry;
-  p->tf->sstatus = (read_csr(sstatus) & ~SSTATUS_SPP) | SSTATUS_SPIE;
+  // Ensure interrupts remain disabled in S-mode until sret restores from SPIE.
+  p->tf->sstatus = (read_csr(sstatus) & ~(SSTATUS_SPP | SSTATUS_SIE)) | SSTATUS_SPIE;
   p->tf->usp = sp;
   p->tf->a0 = (uint64_t)argc;
   p->tf->a1 = sp;

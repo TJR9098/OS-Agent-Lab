@@ -1,5 +1,6 @@
 #include "sbi.h"
 #include "riscv.h"
+#include "printf.h"
 
 // 简化的SBI调用实现
 void sbi_console_putchar(int ch) {
@@ -26,6 +27,9 @@ void sbi_set_timer(uint64_t stime) {
 }
 
 void sbi_shutdown() {
+    // 打印即将关机的信息
+    kprintf("[SBI] System shutting down...\n");
+
     // 尝试使用System Reset Extension
     asm volatile (
         "li a7, 0x53525354\n"

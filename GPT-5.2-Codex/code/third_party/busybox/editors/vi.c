@@ -3089,9 +3089,9 @@ static void colon(char *buf)
 		}
 		// are there other file to edit
 		n = cmdline_filecnt - optind - 1;
-		if (*cmd == 'q' && n > 0) {
-			status_line_bold("%u more file(s) to edit", n);
-			goto ret;
+		if (*cmd == 'q' && n > 0 && useforce) {
+			// force end of argv list
+			optind = cmdline_filecnt;
 		}
 		if (*cmd == 'n' && n <= 0) {
 			status_line_bold("No more files to edit");
@@ -3404,14 +3404,9 @@ static void colon(char *buf)
 				} else if (cmd[0] == 'x' || cmd[1] == 'q') {
 					// are there other files to edit?
 					int n = cmdline_filecnt - optind - 1;
-					if (n > 0) {
-						if (useforce) {
-							// force end of argv list
-							optind = cmdline_filecnt;
-						} else {
-							status_line_bold("%u more file(s) to edit", n);
-							goto ret;
-						}
+					if (n > 0 && useforce) {
+						// force end of argv list
+						optind = cmdline_filecnt;
 					}
 					editing = 0;
 				}

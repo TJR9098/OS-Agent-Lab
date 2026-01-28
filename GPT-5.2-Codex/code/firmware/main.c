@@ -14,6 +14,9 @@
 #define DTB_MAX_SIZE (64U * 1024U)
 #define IMAGE_HEADER_OFFSET 0ULL
 #define DEFAULT_TICK_HZ 100U
+#define DEFAULT_MEM_BASE DRAM_BASE
+#define DEFAULT_MEM_SIZE 0x40000000ULL /* 1 GiB */
+#define DEFAULT_TIMEBASE_HZ 10000000U
 
 extern void mtrap(void);
 extern char trap_stack_top[];
@@ -36,23 +39,62 @@ static inline void clint_write_mtimecmp(uint64_t hartid, uint64_t val) {
   *(volatile uint64_t *)(CLINT_BASE + 0x4000UL + hartid * 8UL) = val;
 }
 
-static uint64_t find_virtio_blk_base(const void *dtb) {
+static int image_header_valid(const struct image_header *hdr) {
+  return hdr && hdr->magic == IMAGE_MAGIC && hdr->version == IMAGE_VERSION;
+}
+
+static size_t scan_fixed_virtio_bases(uint64_t *out, size_t max_out) {
+  size_t count = 0;
+  for (int i = 7; i >= 0 && count < max_out; i--) {
+    uint64_t base = VIRTIO0_BASE + (uint64_t)(uint32_t)i * 0x1000U;
+    if (mmio_read32(base + 0x000) == 0x74726976U) {
+      out[count++] = base;
+    }
+  }
+  return count;
+}
+
+static uint64_t find_virtio_blk_base(const void *dtb, int have_dtb) {
   uint64_t bases[8];
   size_t count = 0;
   size_t i;
 
-  if (fdt_find_virtio_mmio(dtb, bases, 8, &count) == 0) {
-    for (i = 0; i < count; i++) {
-      uint64_t base = bases[i];
-      uint32_t magic = mmio_read32(base + 0x000);
-      uint32_t dev_id = mmio_read32(base + 0x008);
-      if (magic == 0x74726976U && dev_id == VIRTIO_DEV_BLK) {
-        return base;
+  if (have_dtb) {
+    if (fdt_find_virtio_mmio(dtb, bases, 8, &count) != 0) {
+      fw_printf("fw: dtb virtio scan failed, fallback to fixed list\n");
+      count = scan_fixed_virtio_bases(bases, 8);
+    }
+  } else {
+    count = scan_fixed_virtio_bases(bases, 8);
+  }
+
+  uint64_t first_blk = 0;
+  for (i = 0; i < count; i++) {
+    uint64_t base = bases[i];
+    uint32_t magic = mmio_read32(base + 0x000);
+    uint32_t dev_id = mmio_read32(base + 0x008);
+    if (magic != 0x74726976U || dev_id != VIRTIO_DEV_BLK) {
+      continue;
+    }
+    if (!have_dtb) {
+      fw_printf("fw: probe blk base=0x%lx\n", base);
+    }
+    if (first_blk == 0) {
+      first_blk = base;
+    }
+    if (disk_init(base) != 0) {
+      continue;
+    }
+    struct image_header probe;
+    if (disk_read_bytes(IMAGE_HEADER_OFFSET, &probe, sizeof(probe)) == 0 && image_header_valid(&probe)) {
+      if (!have_dtb) {
+        fw_printf("fw: selected blk base=0x%lx (image header)\n", base);
       }
+      return base;
     }
   }
 
-  return VIRTIO0_BASE;
+  return first_blk ? first_blk : VIRTIO0_BASE;
 }
 
 #define EI_NIDENT 16
@@ -182,9 +224,10 @@ void firmware_main(uint64_t hartid, uintptr_t dtb_ptr) {
   uint64_t entry = 0;
   uint64_t kernel_end = 0;
   struct image_header hdr;
-  uint32_t dtb_size;
+  uint32_t dtb_size = 0;
   uint32_t timebase_hz = 0;
   uint64_t initrd_paddr = 0;
+  int have_dtb = 0;
 
   if (hartid != 0) {
     for (;;) {
@@ -195,11 +238,38 @@ void firmware_main(uint64_t hartid, uintptr_t dtb_ptr) {
   uart_init();
   fw_printf("fw: hart=%lu dtb=%p\n", hartid, (void *)dtb_ptr);
 
-  if (fdt_get_memory((const void *)dtb_ptr, &mem_base, &mem_size) != 0) {
-    fw_printf("fw: failed to read memory from dtb\n");
+#ifdef CONFIG_FORCE_DTB_NULL
+  fw_printf("fw: forcing dtb=null for selftest\n");
+  dtb_ptr = 0;
+#endif
+
+  /* Install a trap handler early so faults during probing are visible. */
+  __asm__ volatile("csrw mtvec, %0" :: "r"(&mtrap));
+  __asm__ volatile("csrw mscratch, %0" :: "r"(trap_stack_top));
+
+  if (dtb_ptr != 0) {
+    uint32_t total = fdt_total_size((const void *)dtb_ptr);
+    if (total != 0 && total <= DTB_MAX_SIZE) {
+      have_dtb = 1;
+      dtb_size = total;
+    } else {
+      fw_printf("fw: dtb invalid (size=%u), using defaults\n", total);
+    }
   }
 
-  virtio_base = find_virtio_blk_base((const void *)dtb_ptr);
+  if (have_dtb) {
+    if (fdt_get_memory((const void *)dtb_ptr, &mem_base, &mem_size) != 0) {
+      fw_printf("fw: failed to read memory from dtb, using defaults\n");
+      mem_base = DEFAULT_MEM_BASE;
+      mem_size = DEFAULT_MEM_SIZE;
+    }
+  } else {
+    mem_base = DEFAULT_MEM_BASE;
+    mem_size = DEFAULT_MEM_SIZE;
+    fw_printf("fw: dtb missing, mem_base=0x%lx mem_size=0x%lx\n", mem_base, mem_size);
+  }
+
+  virtio_base = find_virtio_blk_base((const void *)dtb_ptr, have_dtb);
   fw_printf("fw: virtio-blk base=0x%lx\n", virtio_base);
   fw_printf("fw: virtio magic=0x%x version=%u dev=%u\n",
             mmio_read32(virtio_base + 0x000),
@@ -249,20 +319,20 @@ void firmware_main(uint64_t hartid, uintptr_t dtb_ptr) {
     }
   }
 
-  dtb_size = fdt_total_size((const void *)dtb_ptr);
-  if (dtb_size == 0 || dtb_size > DTB_MAX_SIZE) {
-    panic("dtb too large");
+  if (have_dtb) {
+    if (fdt_get_timebase((const void *)dtb_ptr, &timebase_hz) != 0) {
+      timebase_hz = DEFAULT_TIMEBASE_HZ;
+    }
+    memcpy(g_dtb_copy, (const void *)dtb_ptr, dtb_size);
+  } else {
+    timebase_hz = DEFAULT_TIMEBASE_HZ;
   }
-  if (fdt_get_timebase((const void *)dtb_ptr, &timebase_hz) != 0) {
-    timebase_hz = 10000000U;
-  }
-  memcpy(g_dtb_copy, (const void *)dtb_ptr, dtb_size);
 
   g_bootinfo.magic = BOOTINFO_MAGIC;
   g_bootinfo.version = 3;
   g_bootinfo.mem_base = mem_base;
   g_bootinfo.mem_size = mem_size;
-  g_bootinfo.dtb_paddr = (uint64_t)(uintptr_t)g_dtb_copy;
+  g_bootinfo.dtb_paddr = have_dtb ? (uint64_t)(uintptr_t)g_dtb_copy : 0;
   g_bootinfo.initrd_paddr = initrd_paddr;
   g_bootinfo.initrd_size = hdr.initrd_size;
   g_bootinfo.cmdline_paddr = 0;
@@ -274,8 +344,10 @@ void firmware_main(uint64_t hartid, uintptr_t dtb_ptr) {
   g_bootinfo.reserved = 0;
   g_bootinfo.timebase_hz = timebase_hz;
 
-  __asm__ volatile("csrw mtvec, %0" :: "r"(&mtrap));
-  __asm__ volatile("csrw mscratch, %0" :: "r"(trap_stack_top));
+  if (!have_dtb) {
+    fw_printf("fw: dtb missing, using virt defaults\n");
+  }
+
   {
     uint64_t medeleg = 0;
     medeleg |= 0xFF; // exceptions 0-7

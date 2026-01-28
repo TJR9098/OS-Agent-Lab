@@ -7,6 +7,7 @@
 
 #define SYS_DUP 23
 #define SYS_DUP3 24
+#define SYS_FTRUNCATE 46
 #define SYS_IOCTL 29
 #define SYS_GETCWD 17
 #define SYS_CHDIR 49
@@ -21,6 +22,13 @@
 #define SYS_FSTATAT 79
 #define SYS_FSTAT 80
 #define SYS_EXIT 93
+#define SYS_REBOOT 142
+#define SYS_GETPID 172
+#define SYS_GETPPID 173
+#define SYS_GETUID 174
+#define SYS_GETEUID 175
+#define SYS_GETGID 176
+#define SYS_GETEGID 177
 #define SYS_BRK 214
 #define SYS_CLONE 220
 #define SYS_EXECVE 221
@@ -101,6 +109,10 @@ int fstat(int fd, struct stat *st) {
   return (int)wrap_ret(syscall6(SYS_FSTAT, fd, (long)st, 0, 0, 0, 0));
 }
 
+int ftruncate(int fd, off_t length) {
+  return (int)wrap_ret(syscall6(SYS_FTRUNCATE, fd, (long)length, 0, 0, 0, 0));
+}
+
 int fstatat(int dirfd, const char *path, struct stat *st) {
   return (int)wrap_ret(syscall6(SYS_FSTATAT, dirfd, (long)path, (long)st, 0, 0, 0));
 }
@@ -116,6 +128,30 @@ char *getcwd(char *buf, size_t size) {
     return NULL;
   }
   return buf;
+}
+
+pid_t getpid(void) {
+  return (pid_t)wrap_ret(syscall6(SYS_GETPID, 0, 0, 0, 0, 0, 0));
+}
+
+pid_t getppid(void) {
+  return (pid_t)wrap_ret(syscall6(SYS_GETPPID, 0, 0, 0, 0, 0, 0));
+}
+
+uid_t getuid(void) {
+  return (uid_t)wrap_ret(syscall6(SYS_GETUID, 0, 0, 0, 0, 0, 0));
+}
+
+uid_t geteuid(void) {
+  return (uid_t)wrap_ret(syscall6(SYS_GETEUID, 0, 0, 0, 0, 0, 0));
+}
+
+gid_t getgid(void) {
+  return (gid_t)wrap_ret(syscall6(SYS_GETGID, 0, 0, 0, 0, 0, 0));
+}
+
+gid_t getegid(void) {
+  return (gid_t)wrap_ret(syscall6(SYS_GETEGID, 0, 0, 0, 0, 0, 0));
 }
 
 pid_t fork(void) {
@@ -144,6 +180,10 @@ void _exit(int status) {
 
 void exit(int status) {
   _exit(status);
+}
+
+int reboot(int magic1, int magic2, unsigned int cmd, void *arg) {
+  return (int)wrap_ret(syscall6(SYS_REBOOT, magic1, magic2, (long)cmd, (long)arg, 0, 0));
 }
 
 static void *sys_brk(void *addr) {

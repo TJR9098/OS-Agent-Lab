@@ -3,11 +3,18 @@ CROSS ?= riscv64-unknown-elf-
 CC := $(CROSS)gcc
 OBJCOPY := $(CROSS)objcopy
 OBJDUMP := $(CROSS)objdump
+RISCV_ARCH_BASE := rv64imac
+RISCV_ZICSR_SUPPORTED := $(shell printf '' | $(CC) -x c - -c -o /dev/null -march=$(RISCV_ARCH_BASE)_zicsr -mabi=lp64 >/dev/null 2>&1 && echo 1 || echo 0)
+ifeq ($(RISCV_ZICSR_SUPPORTED),1)
+RISCV_ARCH := $(RISCV_ARCH_BASE)_zicsr
+else
+RISCV_ARCH := $(RISCV_ARCH_BASE)
+endif
 
 # 编译选项
-CFLAGS := -ffreestanding -fno-builtin -fno-stack-protector -fno-pic -fno-pie -march=rv64imac -mabi=lp64 -mcmodel=medany -Iinclude
-LDFLAGS := -T linker.ld -nostdlib -no-pie -Wl,--build-id=none
-ASFLAGS := -Iinclude -march=rv64imac -mabi=lp64
+CFLAGS := -ffreestanding -fno-builtin -fno-stack-protector -fno-pic -fno-pie -march=$(RISCV_ARCH) -mabi=lp64 -mcmodel=medany -Iinclude -O0
+LDFLAGS := -T linker.ld -nostdlib -nodefaultlibs -lgcc -no-pie -Wl,--build-id=none
+ASFLAGS := -Iinclude -march=$(RISCV_ARCH) -mabi=lp64
 
 # QEMU路径
 QEMU := /opt/qemu/bin/qemu-system-riscv64
@@ -16,7 +23,7 @@ QEMU := /opt/qemu/bin/qemu-system-riscv64
 OPENSBI_BIOS := /usr/lib/riscv64-linux-gnu/opensbi/generic/fw_jump.bin
 
 # 源文件列表
-C_SRCS := main.c sbi.c printf.c panic.c trap.c timer.c mem.c
+C_SRCS := main.c sbi.c printf.c panic.c trap.c timer.c mem.c vm.c test_simple.c test_vm.c
 S_SRCS := entry.S stack.S trapvec.S
 
 # 目标文件列表
@@ -38,7 +45,7 @@ kernel.bin: kernel.elf
 	$(CC) $(ASFLAGS) -c $< -o $@
 
 run: kernel.elf
-	$(QEMU) -machine virt -nographic -bios $(OPENSBI_BIOS) -kernel ./kernel.elf -smp 1
+	$(QEMU) -machine virt -nographic -bios $(OPENSBI_BIOS) -m 1024M -kernel ./kernel.elf -smp 1
 
 clean:
 	rm -f *.o kernel.elf kernel.bin

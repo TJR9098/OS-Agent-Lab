@@ -8,6 +8,9 @@
 #define SSTATUS_SPIE (1UL << 5)
 #define SSTATUS_SPP (1UL << 8)
 
+#define SIE_SSIE (1UL << 1)
+#define SIE_STIE (1UL << 5)
+#define SIE_SEIE (1UL << 9)
 
 #define PTE_V (1UL << 0)
 #define PTE_R (1UL << 1)

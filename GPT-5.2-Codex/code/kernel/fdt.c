@@ -27,6 +27,14 @@ static uint32_t fdt32_to_cpu(uint32_t x) {
   return ((x & 0xffU) << 24) | ((x & 0xff00U) << 8) | ((x & 0xff0000U) >> 8) | ((x & 0xff000000U) >> 24);
 }
 
+static size_t fdt_strnlen(const char *s, const char *end) {
+  const char *p = s;
+  while (p < end && *p) {
+    p++;
+  }
+  return (size_t)(p - s);
+}
+
 static const uint8_t *align4(const uint8_t *p) {
   uintptr_t v = (uintptr_t)p;
   v = (v + 3U) & ~((uintptr_t)3U);
@@ -74,7 +82,9 @@ static int fdt_scan(const void *dtb,
                     size_t *virtio_count) {
   const uint8_t *p;
   const uint8_t *struct_base;
+  const uint8_t *struct_end;
   const char *strings;
+  const char *strings_end;
   uint32_t addr_cells = 2;
   uint32_t size_cells = 2;
   int depth = 0;
@@ -85,9 +95,29 @@ static int fdt_scan(const void *dtb,
   if (fdt32_to_cpu(hdr->magic) != FDT_MAGIC) {
     return -1;
   }
+  uint32_t total = fdt32_to_cpu(hdr->totalsize);
+  if (total < sizeof(*hdr) || total > (16U * 1024U * 1024U)) {
+    return -1;
+  }
 
-  struct_base = (const uint8_t *)dtb + fdt32_to_cpu(hdr->off_dt_struct);
-  strings = (const char *)dtb + fdt32_to_cpu(hdr->off_dt_strings);
+  uint32_t off_struct = fdt32_to_cpu(hdr->off_dt_struct);
+  uint32_t off_strings = fdt32_to_cpu(hdr->off_dt_strings);
+  uint32_t size_struct = fdt32_to_cpu(hdr->size_dt_struct);
+  uint32_t size_strings = fdt32_to_cpu(hdr->size_dt_strings);
+  if (off_struct >= total || off_strings >= total) {
+    return -1;
+  }
+  if (off_struct + size_struct > total) {
+    return -1;
+  }
+  if (off_strings + size_strings > total) {
+    return -1;
+  }
+
+  struct_base = (const uint8_t *)dtb + off_struct;
+  struct_end = struct_base + size_struct;
+  strings = (const char *)dtb + off_strings;
+  strings_end = strings + size_strings;
   p = struct_base;
 
   if (virtio_count) {
@@ -95,12 +125,18 @@ static int fdt_scan(const void *dtb,
   }
 
   for (;;) {
+    if (p + 4 > struct_end) {
+      return -1;
+    }
     uint32_t token = fdt32_to_cpu(*(const uint32_t *)p);
     p += 4;
 
     if (token == FDT_BEGIN_NODE) {
       const char *name = (const char *)p;
-      size_t name_len = strlen(name);
+      size_t name_len = fdt_strnlen(name, (const char *)struct_end);
+      if (p + name_len >= struct_end) {
+        return -1;
+      }
 
       if (depth < (int)(sizeof(stack) / sizeof(stack[0]))) {
         stack[depth].is_memory = 0;
@@ -112,6 +148,9 @@ static int fdt_scan(const void *dtb,
       depth++;
 
       p = align4(p + name_len + 1);
+      if (p > struct_end) {
+        return -1;
+      }
       (void)name;
       continue;
     }
@@ -132,13 +171,25 @@ static int fdt_scan(const void *dtb,
     }
 
     if (token == FDT_PROP) {
+      if (p + 8 > struct_end) {
+        return -1;
+      }
       uint32_t len = fdt32_to_cpu(*(const uint32_t *)p);
       p += 4;
       uint32_t nameoff = fdt32_to_cpu(*(const uint32_t *)p);
       p += 4;
 
+      if (nameoff >= size_strings) {
+        return -1;
+      }
       const char *propname = strings + nameoff;
+      if (propname >= strings_end) {
+        return -1;
+      }
       const uint8_t *value = p;
+      if (p + len > struct_end) {
+        return -1;
+      }
 
       if (depth == 1) {
         if (strcmp(propname, "#address-cells") == 0 && len >= 4) {
@@ -169,6 +220,9 @@ static int fdt_scan(const void *dtb,
       }
 
       p = align4(p + len);
+      if (p > struct_end) {
+        return -1;
+      }
       continue;
     }
 

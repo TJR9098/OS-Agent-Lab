@@ -21,6 +21,7 @@
   - `tools/mkfs_fat32.py`: 生成带 MBR 的 FAT32 镜像（默认 128MB，含 `/ram` 目录）。
 - `verify/`: 验证记录与测试日志。
 - `build/`: 构建与运行生成的中间产物/镜像（如 `disk.img`、`fs.img`、`virt.dtb` 等）。
+- `stage_record`: 记录每个阶段完成的任务。
 
 ## 如何运行（WSL）
 ### 依赖
@@ -45,14 +46,14 @@ make -C firmware CROSS=riscv64-unknown-elf-
 # 2) 构建内核（S 模式）
 make -C kernel CROSS=riscv64-unknown-elf-
 
-# 3) 生成内核磁盘镜像
+# 3) 生成 DTB（QEMU virt 机型）
+qemu-system-riscv64 -machine virt,dumpdtb=build/virt.dtb -m 1024M -smp 4 -nographic -bios none
+
+# 4) 生成内核磁盘镜像
 python3 tools/mkimage.py --kernel kernel/kernel.elf --out build/disk.img
 
-# 4) 生成/格式化 FAT32 镜像（作为第二块盘）
+# 5) 生成/格式化 FAT32 镜像（作为第二块盘）
 python3 tools/mkfs_fat32.py --out build/fs.img --size 128M --root user/rootfs --force
-
-# 5) 构建用户态
-make -C user install
 
 # 6) 启动 QEMU
 /opt/qemu/bin/qemu-system-riscv64 -machine virt -m 1024M -smp 4 -nographic -dtb build/virt.dtb -global virtio-mmio.force-legacy=false -bios firmware/firmware.bin -drive file=build/disk_stage3.img,format=raw,if=none,id=hd0 -device virtio-blk-device,drive=hd0 -drive file=build/fs_stage3.img,format=raw,if=none,id=hd1 -device virtio-blk-device,drive=hd1

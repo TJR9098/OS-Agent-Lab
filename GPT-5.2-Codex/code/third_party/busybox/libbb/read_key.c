@@ -158,6 +158,19 @@ int64_t FAST_FUNC read_key(int fd, char *buffer, int timeout)
 		}
 	}
 
+	/* If ESC is followed by a non-escape byte (e.g. ":"),
+	 * return ESC and keep the following byte for the next call.
+	 * This avoids losing quick ESC + normal char sequences on
+	 * simple serial consoles where poll/read timing is coarse.
+	 */
+	if (n > 0) {
+		unsigned char next = buffer[0];
+		if (next != '[' && next != 'O') {
+			buffer[-1] = n;
+			return 27;
+		}
+	}
+
 	/* Loop through known ESC sequences */
 	seq = esccmds;
 	while (*seq != '\0') {

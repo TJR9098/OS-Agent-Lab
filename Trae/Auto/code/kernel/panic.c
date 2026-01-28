@@ -33,9 +33,9 @@ void panic_trap(uint64_t scause, uint64_t sepc, uint64_t stval, const char *msg)
     }
     
     // 输出trap相关信息
-    kprintf("scause: %lx\n", scause);
-    kprintf("sepc: %lx\n", sepc);
-    kprintf("stval: %lx\n", stval);
+    kprintf("scause: 0x%lx\n", scause);
+    kprintf("sepc: 0x%lx\n", sepc);
+    kprintf("stval: 0x%lx\n", stval);
     
     // 关闭中断
     csr_clear(sstatus, SSTATUS_SIE);

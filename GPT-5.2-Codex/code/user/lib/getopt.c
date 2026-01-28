@@ -8,6 +8,10 @@ char *optarg = NULL;
 
 int getopt(int argc, char *const argv[], const char *optstring) {
   static int optpos = 0;
+  if (optind == 0) {
+    optind = 1;
+    optpos = 0;
+  }
   if (optind >= argc || !argv[optind]) {
     return -1;
   }

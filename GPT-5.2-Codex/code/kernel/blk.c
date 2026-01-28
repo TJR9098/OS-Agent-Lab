@@ -3,6 +3,7 @@
 #include "blk.h"
 #include "fdt.h"
 #include "log.h"
+#include "memlayout.h"
 #include "string.h"
 #include "virtio_blk.h"
 
@@ -16,6 +17,17 @@ static inline uint32_t mmio_read32(uint64_t addr) {
   return *(volatile uint32_t *)addr;
 }
 
+static size_t scan_fixed_virtio_bases(uint64_t *out, size_t max_out) {
+  size_t count = 0;
+  for (int i = 7; i >= 0 && count < max_out; i--) {
+    uint64_t base = VIRTIO0_BASE + (uint64_t)(uint32_t)i * 0x1000U;
+    if (mmio_read32(base + 0x000) == 0x74726976U) {
+      out[count++] = base;
+    }
+  }
+  return count;
+}
+
 int blk_init(const void *dtb, uint32_t root_index) {
   uint64_t bases[8];
   uint64_t blk_bases[8];
@@ -23,9 +35,15 @@ int blk_init(const void *dtb, uint32_t root_index) {
   size_t blk_count = 0;
   size_t i;
 
-  if (fdt_find_virtio_mmio(dtb, bases, 8, &count) != 0) {
-    log_error("blk: failed to read virtio mmio list");
-    return -1;
+  if (dtb && fdt_find_virtio_mmio(dtb, bases, 8, &count) == 0) {
+    /* DTB path succeeded. */
+  } else {
+    if (dtb) {
+      log_error("blk: dtb virtio scan failed, fallback to fixed list");
+    } else {
+      log_info("blk: dtb missing, using fixed virtio-mmio list");
+    }
+    count = scan_fixed_virtio_bases(bases, 8);
   }
 
   for (i = 0; i < count; i++) {
@@ -41,10 +59,14 @@ int blk_init(const void *dtb, uint32_t root_index) {
   }
 
   uint32_t selected = root_index;
+#ifdef CONFIG_STAGE2_TEST
   int fallback = 0;
+#endif
   if (selected >= blk_count) {
     selected = 0;
+#ifdef CONFIG_STAGE2_TEST
     fallback = 1;
+#endif
   }
 #ifdef CONFIG_STAGE2_TEST
   log_info("blk: devices=%lu requested=%u selected=%u%s",

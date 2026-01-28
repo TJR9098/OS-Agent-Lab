@@ -4,6 +4,8 @@
 
 #define SBI_EXT_TIME 0x54494D45UL
 #define SBI_FID_SET_TIMER 0UL
+#define SBI_EXT_SRST 0x53525354UL
+#define SBI_FID_SYSTEM_RESET 0UL
 
 struct sbi_ret {
   long error;
@@ -37,4 +39,15 @@ static inline struct sbi_ret sbi_call(uint64_t eid,
 
 void sbi_set_timer(uint64_t stime_value) {
   (void)sbi_call(SBI_EXT_TIME, SBI_FID_SET_TIMER, stime_value, 0, 0, 0, 0, 0);
+}
+
+void sbi_system_reset(uint32_t reset_type, uint32_t reset_reason) {
+  (void)sbi_call(SBI_EXT_SRST,
+                 SBI_FID_SYSTEM_RESET,
+                 (uint64_t)reset_type,
+                 (uint64_t)reset_reason,
+                 0,
+                 0,
+                 0,
+                 0);
 }

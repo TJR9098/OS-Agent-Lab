@@ -4,7 +4,12 @@
 #include "printf.h"
 
 #define SBI_EXT_TIME 0x54494D45UL
+#define SBI_EXT_SRST 0x53525354UL
 #define SBI_ERR_NOT_SUPPORTED -2L
+
+#define SIFIVE_TEST_BASE 0x100000UL
+#define SIFIVE_TEST_SHUTDOWN 0x5555U
+#define SIFIVE_TEST_REBOOT 0x7777U
 
 struct mtrap_frame {
   uint64_t ra;
@@ -67,6 +72,11 @@ static void sbi_set_timer(uint64_t stime) {
   clear_stip();
 }
 
+static void sbi_system_reset(uint32_t reset_type) {
+  uint32_t code = (reset_type == 0U) ? SIFIVE_TEST_SHUTDOWN : SIFIVE_TEST_REBOOT;
+  *(volatile uint32_t *)(uintptr_t)SIFIVE_TEST_BASE = code;
+}
+
 void mtrap_handler(struct mtrap_frame *tf) {
   uint64_t mcause = tf->mcause;
 
@@ -88,6 +98,10 @@ void mtrap_handler(struct mtrap_frame *tf) {
 
     if (eid == SBI_EXT_TIME && fid == 0) {
       sbi_set_timer(tf->a0);
+      tf->a0 = 0;
+      tf->a1 = 0;
+    } else if (eid == SBI_EXT_SRST) {
+      sbi_system_reset((uint32_t)tf->a0);
       tf->a0 = 0;
       tf->a1 = 0;
     } else if (eid == 0) {

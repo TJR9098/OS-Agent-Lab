@@ -37,6 +37,9 @@
 #define EXC_ECALL_U         8
 #define EXC_ECALL_S         9
 #define EXC_ECALL_M         11
+#define EXC_INST_PAGE_FAULT 12
+#define EXC_LOAD_PAGE_FAULT 13
+#define EXC_STORE_PAGE_FAULT 15
 
 // 中断类型
 #define IRQ_S_SOFT     1

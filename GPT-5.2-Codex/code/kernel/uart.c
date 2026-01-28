@@ -52,3 +52,7 @@ int uart_getc(void) {
   }
   return (int)uart_read(UART_RBR);
 }
+
+int uart_rx_ready(void) {
+  return (uart_read(UART_LSR) & LSR_DR) != 0;
+}

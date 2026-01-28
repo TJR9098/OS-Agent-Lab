@@ -7,7 +7,9 @@
 #include "memlayout.h"
 #include "proc.h"
 #include "riscv.h"
+#include "sbi.h"
 #include "syscall.h"
+#include "timer.h"
 #include "uart.h"
 #include "vfs.h"
 #include "vm.h"
@@ -30,6 +32,7 @@
 #define SYS_DUP 23
 #define SYS_DUP3 24
 #define SYS_LSEEK 62
+#define SYS_POLL 7
 
 #define TCGETS 0x5401
 #define TCSETS 0x5402
@@ -38,6 +41,10 @@
 #define TIOCGWINSZ 0x5413
 #define ICANON 0x0002
 #define ECHO 0x0008
+
+#define POLLIN 0x0001
+
+#define MAX_POLL_FDS 16
 
 #define MAX_ARG 16
 #define ARG_MAX_LEN 128
@@ -65,6 +72,12 @@ struct winsize {
   uint16_t ws_col;
   uint16_t ws_xpixel;
   uint16_t ws_ypixel;
+};
+
+struct pollfd {
+  int fd;
+  short events;
+  short revents;
 };
 
 static uint32_t g_tty_lflag = ICANON | ECHO;
@@ -193,7 +206,7 @@ static int sys_read(uint64_t fd, uint64_t buf, uint64_t len) {
         }
       }
     } else {
-      while (n < len && n < sizeof(tmp)) {
+      if (len > 0) {
         int c;
         while ((c = uart_getc()) < 0) {
         }
@@ -506,6 +519,17 @@ static int sys_fstat(uint64_t fd, uint64_t stat_ptr) {
   return 0;
 }
 
+static int sys_ftruncate(uint64_t fd, int64_t length) {
+  struct proc *p = proc_current();
+  if (!p || fd >= NOFILE || !p->ofile[fd]) {
+    return -EBADF;
+  }
+  if (length < 0) {
+    return -EINVAL;
+  }
+  return file_truncate(p->ofile[fd], (uint64_t)length);
+}
+
 static int sys_fstatat(uint64_t dirfd, uint64_t path_ptr, uint64_t stat_ptr) {
   struct proc *p = proc_current();
   if (!p) {
@@ -531,6 +555,126 @@ static int sys_fstatat(uint64_t dirfd, uint64_t path_ptr, uint64_t stat_ptr) {
   if (copyout(p->pagetable, stat_ptr, &st, sizeof(st)) != 0) {
     return -EFAULT;
   }
+  return 0;
+}
+
+static int poll_check(struct proc *p, struct pollfd *fds, uint64_t nfds) {
+  int ready = 0;
+  for (uint64_t i = 0; i < nfds; i++) {
+    fds[i].revents = 0;
+    if (fds[i].events & POLLIN) {
+      int fd = fds[i].fd;
+      if (fd == 0) {
+        if (uart_rx_ready()) {
+          fds[i].revents |= POLLIN;
+        }
+      } else if (fd >= 0 && fd < NOFILE) {
+        if (p->ofile[fd]) {
+          fds[i].revents |= POLLIN;
+        } else {
+          return -EBADF;
+        }
+      } else if (fd < 0) {
+        return -EBADF;
+      }
+    }
+    if (fds[i].revents) {
+      ready++;
+    }
+  }
+  return ready;
+}
+
+static int sys_poll(uint64_t fds_ptr, uint64_t nfds, int64_t timeout_ms) {
+  struct proc *p = proc_current();
+  if (!p) {
+    return -EINVAL;
+  }
+  if (nfds > MAX_POLL_FDS) {
+    return -EINVAL;
+  }
+  struct pollfd fds[MAX_POLL_FDS];
+  size_t bytes = (size_t)nfds * sizeof(struct pollfd);
+  if (bytes > 0 && copyin(p->pagetable, fds, fds_ptr, bytes) != 0) {
+    return -EFAULT;
+  }
+
+  int ready = 0;
+  if (timeout_ms == 0) {
+    int ret = poll_check(p, fds, nfds);
+    if (ret < 0) {
+      return ret;
+    }
+    ready = ret;
+  } else {
+    uint64_t timebase = timer_timebase_hz();
+    if (timebase == 0) {
+      timebase = 10000000ULL;
+    }
+    uint64_t start = read_csr(time);
+    uint64_t deadline = 0;
+    if (timeout_ms > 0) {
+      uint64_t ticks = ((uint64_t)timeout_ms * timebase) / 1000;
+      deadline = start + ticks;
+    }
+    for (;;) {
+      int ret = poll_check(p, fds, nfds);
+      if (ret < 0) {
+        return ret;
+      }
+      ready = ret;
+      if (ready > 0) {
+        break;
+      }
+      if (timeout_ms > 0) {
+        uint64_t now = read_csr(time);
+        if (now >= deadline) {
+          break;
+        }
+      } else if (timeout_ms == 0) {
+        break;
+      }
+    }
+  }
+
+  if (bytes > 0 && copyout(p->pagetable, fds_ptr, fds, bytes) != 0) {
+    return -EFAULT;
+  }
+  return ready;
+}
+
+static int sys_getpid(void) {
+  struct proc *p = proc_current();
+  if (!p) {
+    return -EINVAL;
+  }
+  return p->pid;
+}
+
+static int sys_getppid(void) {
+  struct proc *p = proc_current();
+  if (!p) {
+    return -EINVAL;
+  }
+  if (!p->parent) {
+    return 0;
+  }
+  return p->parent->pid;
+}
+
+static int sys_getuid(void) {
+  return 0;
+}
+
+static int sys_geteuid(void) {
+  return 0;
+}
+
+static int sys_getgid(void) {
+  return 0;
+}
+
+static int sys_getegid(void) {
   return 0;
 }
 
@@ -641,6 +785,19 @@ static int sys_exit(uint64_t status) {
   return 0;
 }
 
+static long sys_reboot(uint64_t magic1, uint64_t magic2, uint64_t cmd, uint64_t arg) {
+  (void)magic1;
+  (void)magic2;
+  (void)cmd;
+  (void)arg;
+  log_info("reboot: shutdown");
+  sbi_system_reset(SBI_SRST_RESET_TYPE_SHUTDOWN, SBI_SRST_REASON_NONE);
+  for (;;) {
+    __asm__ volatile("wfi");
+  }
+  __builtin_unreachable();
+}
+
 static long sys_brk(uint64_t addr) {
   struct proc *p = proc_current();
   if (!p) {
@@ -695,8 +852,22 @@ long syscall_dispatch(struct trapframe *tf) {
       return sys_unlinkat(tf->a0, tf->a1);
     case SYS_FSTAT:
       return sys_fstat(tf->a0, tf->a1);
+    case SYS_FTRUNCATE:
+      return sys_ftruncate(tf->a0, (int64_t)tf->a1);
     case SYS_FSTATAT:
       return sys_fstatat(tf->a0, tf->a1, tf->a2);
+    case SYS_GETPID:
+      return sys_getpid();
+    case SYS_GETPPID:
+      return sys_getppid();
+    case SYS_GETUID:
+      return sys_getuid();
+    case SYS_GETEUID:
+      return sys_geteuid();
+    case SYS_GETGID:
+      return sys_getgid();
+    case SYS_GETEGID:
+      return sys_getegid();
     case SYS_CHDIR:
       return sys_chdir(tf->a0);
     case SYS_GETCWD:
@@ -705,6 +876,8 @@ long syscall_dispatch(struct trapframe *tf) {
       return sys_ioctl(tf->a0, tf->a1, tf->a2);
     case SYS_LSEEK:
       return sys_lseek(tf->a0, (int64_t)tf->a1, tf->a2);
+    case SYS_POLL:
+      return sys_poll(tf->a0, tf->a1, (int64_t)tf->a2);
     case SYS_CLONE:
       return sys_clone(tf);
     case SYS_EXECVE:
@@ -713,6 +886,8 @@ long syscall_dispatch(struct trapframe *tf) {
       return sys_wait4(tf->a0, tf->a1);
     case SYS_EXIT:
       return sys_exit(tf->a0);
+    case SYS_REBOOT:
+      return sys_reboot(tf->a0, tf->a1, tf->a2, tf->a3);
     case SYS_BRK:
       return sys_brk(tf->a0);
     default:
