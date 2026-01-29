@@ -17,10 +17,16 @@ LDFLAGS := -T linker.ld -nostdlib -nodefaultlibs -lgcc -no-pie -Wl,--build-id=no
 ASFLAGS := -Iinclude -march=$(RISCV_ARCH) -mabi=lp64
 
 # QEMU路径
-QEMU := /opt/qemu/bin/qemu-system-riscv64
+QEMU := qemu-system-riscv64
 
 # OpenSBI路径
+# 默认
+OPENSBI_BIOS := default
+# 优先使用系统路径
+ifeq ($(wildcard /usr/lib/riscv64-linux-gnu/opensbi/generic/fw_jump.bin),/usr/lib/riscv64-linux-gnu/opensbi/generic/fw_jump.bin)
 OPENSBI_BIOS := /usr/lib/riscv64-linux-gnu/opensbi/generic/fw_jump.bin
+endif
+
 
 # 源文件列表
 C_SRCS := main.c sbi.c printf.c panic.c trap.c timer.c mem.c vm.c test_simple.c test_vm.c

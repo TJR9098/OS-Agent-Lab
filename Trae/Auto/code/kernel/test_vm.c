@@ -12,6 +12,16 @@ void *memset(void *s, int c, size_t n) {
     return s;
 }
 
+// 手动实现内存复制
+static void *memcpy(void *dst, const void *src, size_t size) {
+    char *d = (char *)dst;
+    const char *s = (const char *)src;
+    for (size_t i = 0; i < size; i++) {
+        d[i] = s[i];
+    }
+    return dst;
+}
+
 // 测试VA选择规则
 #define TEST_VA_BASE 0x40000000
 #define TEST_VA2 (TEST_VA_BASE + 0x2000)

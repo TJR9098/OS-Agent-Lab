@@ -2,6 +2,14 @@ CROSS ?= riscv64-unknown-elf-
 CC := $(CROSS)gcc
 OBJCOPY := $(CROSS)objcopy
 
+# OpenSBI路径
+# 默认
+OPENSBI_BIOS := default
+# 优先使用系统路径
+ifeq ($(wildcard /usr/lib/riscv64-linux-gnu/opensbi/generic/fw_jump.bin),/usr/lib/riscv64-linux-gnu/opensbi/generic/fw_jump.bin)
+OPENSBI_BIOS := /usr/lib/riscv64-linux-gnu/opensbi/generic/fw_jump.bin
+endif
+
 CFLAGS = -ffreestanding -fno-builtin -fno-stack-protector -fno-pic -fno-pie -march=rv64imac -mabi=lp64 -mcmodel=medany -Iinclude
 ASFLAGS = -Iinclude -march=rv64imac -mabi=lp64
 LDFLAGS = -T linker.ld -nostdlib -no-pie -Wl,--build-id=none
@@ -25,7 +33,7 @@ kernel.bin: kernel.elf
 	$(CC) $(ASFLAGS) -c -o $@ $<
 
 run: all
-	qemu-system-riscv64 -machine virt -nographic -bios default -kernel ./kernel.elf -smp 1 -m 4096
+	qemu-system-riscv64 -machine virt -nographic -bios $(OPENSBI_BIOS) -kernel ./kernel.elf -smp 1 -m 4096
 
 clean:
 	rm -f $(OBJS) kernel.elf kernel.bin
